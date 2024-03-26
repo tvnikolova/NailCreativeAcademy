@@ -40,7 +40,7 @@
 
         [Required]
         [Comment("Course price")]
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         [Required]
         [ForeignKey(nameof(Trainer))]
