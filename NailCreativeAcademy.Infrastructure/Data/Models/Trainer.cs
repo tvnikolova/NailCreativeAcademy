@@ -10,6 +10,7 @@
         {
             this.Courses = new HashSet<Course>();
         }
+
         [Key]
         [Comment("Trainer identifier")]
         public int Id { get; set; }

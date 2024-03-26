@@ -7,7 +7,7 @@
     public class Feedback
     {
         [Key]
-        [Comment("Review identifier")]
+        [Comment("Feedback identifier")]
         public int Id { get; set; }
 
         [Required]
