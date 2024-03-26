@@ -14,8 +14,8 @@
 
         //Lecturer constants
 
-		public const int TrainerDescriptionMinLength = 10;
-		public const int TrainerDescriptionMaxLength = 150;
+		public const int TrainerDescriptionMinLength = 20;
+		public const int TrainerDescriptionMaxLength = 200;
 
 		public const string TrainerDateOfGraduation = "mm/yyyy";
 		//Course constants
@@ -42,8 +42,8 @@
 
 		//Review
 
-		public const int FeedbackCommentMinLength = 0;
-        public const int FeedbackCommentMaxLength = 5000;
+		public const int FeedbackCommentMinLength = 5;
+        public const int FeedbackCommentMaxLength = 500;
 
     }
 }
