@@ -6,13 +6,14 @@
     {
         public FeedbackBoard()
         {
-            this.Feedbacks = new HashSet<Feedback>();
+            this.Reviews = new HashSet<Feedback>();
         }
 
         [Key]
-        [Comment("FeedbackBoard identifier")]
+        [Comment("Feedback identifier")]
         public int Id { get; set; }
 
-        public ICollection<Feedback> Feedbacks { get; set; }
+        public ICollection<Feedback> Reviews { get; set; }
     }
+}
 }

@@ -13,7 +13,7 @@
         [Required]
         [MaxLength(FeedbackCommentMaxLength)]
         [Comment("Content of the review")]
-        public string Content { get; set; } = string.Empty;
+        public string Review { get; set; } = string.Empty;
 
         [Required]
         [ForeignKey(nameof(Course))]

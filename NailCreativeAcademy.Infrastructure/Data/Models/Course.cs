@@ -24,7 +24,7 @@
         [Required]
         [MaxLength(CourseDescriptionMaxLength)]
         [Comment("Course description")]
-        public string Description { get; set; } = string.Empty;
+        public string Details { get; set; } = string.Empty;
 
         [Required]
         [Comment("Date of starting course")]
