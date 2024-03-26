@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NailCreativeAcademy.Infrastructure\NailCreativeAcademy.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
