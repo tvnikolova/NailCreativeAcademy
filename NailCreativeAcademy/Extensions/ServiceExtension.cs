@@ -2,7 +2,8 @@
 {
     using AspNetCore.Identity;
     using EntityFrameworkCore;
-    using NailCreativeAcademy.Data;
+    using NailCreativeAcademy.Infrastructure.Data;
+    
 
     public static class ServiceExtension
     {
@@ -14,7 +15,7 @@
         public static IServiceCollection AddApplicationDbContext(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = config.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<NailCreativeDbContext>(options =>
                  options.UseSqlServer(connectionString));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -32,7 +33,7 @@
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<NailCreativeDbContext>();
 
             return services;
         }
