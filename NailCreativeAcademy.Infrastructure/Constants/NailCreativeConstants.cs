@@ -3,7 +3,7 @@
     public static class NailCreativeConstants
 	{
 
-		public const string DateOProjectString = "dd.MM.yyyy";
+		public const string DateOProjectString = "dd/MM/yyyy";
         public const int FirstNameMinLength = 2;
         public const int FirstNameMaxLength = 20;
 
@@ -15,20 +15,21 @@
         //Lecturer constants
 
 		public const int TrainerDescriptionMinLength = 20;
-		public const int TrainerDescriptionMaxLength = 200;
+		public const int TrainerDescriptionMaxLength = 500;
 
-		public const string TrainerDateOfGraduation = "mm/yyyy";
 		//Course constants
 		public const int CourseNameMinLength = 10;
 		public const int CourseNameMaxLength = 30;
 
-		public const int CourseDescriptionMinLength = 20;
-		public const int CourseDescriptionMaxLength = 100;
+		public const int CourseDetailsMinLength = 20;
+		public const int CourseDetailsMaxLength = 300;
 
-		public const int CourseMinDuration = 15;
-		public const int CourseMaxDuration = 90;
-		public const int CoursePaymentInformationMinLength = 20;
-        public const int CoursePaymentInformationMaxLength = 300;
+        public const int CourseProgramMinLength = 20;
+        public const int CourseProgramMaxLength = 500;
+
+        public const int CourseMinDuration = 5;
+		public const int CourseMaxDuration = 15;
+		
 
         //Course type constants
 
