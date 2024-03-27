@@ -12,7 +12,7 @@ using NailCreativeAcademy.Infrastructure.Data;
 namespace NailCreativeAcademy.Infrastructure.Migrations
 {
     [DbContext(typeof(NailCreativeDbContext))]
-    [Migration("20240327063012_InitialMigration")]
+    [Migration("20240327082254_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -249,11 +249,6 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasComment("End date of course");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("Course's image");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -261,7 +256,6 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                         .HasComment("Name of course");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)")
                         .HasComment("Course price");
 

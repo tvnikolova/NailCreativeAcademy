@@ -225,8 +225,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                     Details = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false, comment: "Course description"),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "Date of starting course"),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false, comment: "End date of course"),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false, comment: "Course's image"),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false, comment: "Course price"),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false, comment: "Course price"),
                     TrainerId = table.Column<int>(type: "int", nullable: false, comment: "Trainer's id"),
                     CourseTypeId = table.Column<int>(type: "int", nullable: false, comment: "Course type")
                 },
