@@ -4,6 +4,7 @@
     using Microsoft.EntityFrameworkCore;
 
     using Models;
+    using SeedDataBase;
 
     public class NailCreativeDbContext : IdentityDbContext
     {
@@ -32,9 +33,11 @@
                     .WithMany(sp => sp.EnrolledStudents)
                     .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Course>()
-                .Property(p => p.Price)
-                .HasPrecision(18, 2);
+            builder.ApplyConfiguration(new CourseConfig());
+            builder.ApplyConfiguration(new CourseTypeConfig());
+            builder.ApplyConfiguration(new SaloonConfig());
+            builder.ApplyConfiguration(new TrainerConfig());
+            builder.ApplyConfiguration(new UserConfig());
 
             base.OnModelCreating(builder);
         }

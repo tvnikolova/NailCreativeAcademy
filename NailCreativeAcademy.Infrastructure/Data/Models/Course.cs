@@ -22,21 +22,26 @@
         public string Name { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(CourseDescriptionMaxLength)]
-        [Comment("Course description")]
+        [MaxLength(CourseDetailsMaxLength)]
+        [Comment("Course details")]
         public string Details { get; set; } = string.Empty;
 
         [Required]
         [Comment("Date of starting course")]
         public DateTime StartDate { get; set; }
-
-        [Required]
+        
         [Comment("End date of course")]
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         [Required]
-        [Comment("Course's image")]
-        public string ImageUrl { get; set; } = null!;
+        [MaxLength(CourseProgramMaxLength)]
+        [Comment("Course program")]
+        public string Program { get; set; } = string.Empty;
+
+        [Required]
+        [MaxLength(CourseMaxDuration)]
+        [Comment("Course program")]
+        public string Duration { get; set; } = string.Empty;
 
         [Required]
         [Comment("Course price")]
