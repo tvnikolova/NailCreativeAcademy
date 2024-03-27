@@ -12,7 +12,7 @@ using NailCreativeAcademy.Infrastructure.Data;
 namespace NailCreativeAcademy.Infrastructure.Migrations
 {
     [DbContext(typeof(NailCreativeDbContext))]
-    [Migration("20240327082254_InitialMigration")]
+    [Migration("20240327104658_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -241,11 +241,17 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.Property<string>("Details")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
-                        .HasComment("Course description");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)")
+                        .HasComment("Course details");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<string>("Duration")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)")
+                        .HasComment("Course program");
+
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2")
                         .HasComment("End date of course");
 
@@ -258,6 +264,12 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)")
                         .HasComment("Course price");
+
+                    b.Property<string>("Program")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
+                        .HasComment("Course program");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2")
@@ -403,8 +415,8 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.Property<string>("About")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)")
                         .HasComment("Trainer's description");
 
                     b.Property<string>("FirstName")
