@@ -12,7 +12,7 @@ using NailCreativeAcademy.Infrastructure.Data;
 namespace NailCreativeAcademy.Infrastructure.Migrations
 {
     [DbContext(typeof(NailCreativeDbContext))]
-    [Migration("20240326172524_InitialMigration")]
+    [Migration("20240327063012_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

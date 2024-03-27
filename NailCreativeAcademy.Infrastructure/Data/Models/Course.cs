@@ -40,6 +40,7 @@
 
         [Required]
         [Comment("Course price")]
+        [Column(TypeName ="decimal(18,2)")]
         public decimal Price { get; set; }
 
         [Required]

@@ -35,7 +35,6 @@
             builder.Entity<Course>()
                 .Property(p => p.Price)
                 .HasPrecision(18, 2);
-                
 
             base.OnModelCreating(builder);
         }
