@@ -49,10 +49,14 @@
         public decimal Price { get; set; }
 
         [Required]
+        public string Image { get; set; } = string.Empty;
+
+        [Required]
         [ForeignKey(nameof(Trainer))]
         [Comment("Trainer's id")]
         public int TrainerId { get; set; }
         public virtual Trainer Trainer { get; set; } = null!;
+
         [Required]
         [ForeignKey(nameof(CourseType))]
         [Comment("Course type")]
