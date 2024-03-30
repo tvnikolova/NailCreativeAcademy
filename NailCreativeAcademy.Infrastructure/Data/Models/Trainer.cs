@@ -16,16 +16,13 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(FirstNameMaxLength)]
-        [Comment("Trainer's first name")]
-        public string FirstName { get; set; } = string.Empty;
-        [Required]
-        [MaxLength(LastNameMaxLength)]
-        [Comment("Trainer's last name")]
-        public string LastName { get; set; } = string.Empty;
+        [MaxLength(TrainerNameMaxMinLength)]
+        [Comment("Trainer's names")]
+        public string Name { get; set; } = string.Empty;
+       
         [Required]
         [MaxLength(TrainerDescriptionMaxLength)]
-        [Comment("Trainer's description")]
+        [Comment("Trainer's information")]
         public string About { get; set; } = string.Empty;
         public ICollection<Course> Courses { get; set; }
     }

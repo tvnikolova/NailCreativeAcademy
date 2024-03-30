@@ -8,7 +8,7 @@
     {
         public CourseType()
         {
-            this.Courses = new List<Course>();
+            this.Courses = new HashSet<Course>();
         }
         [Key]
         [Comment("Course type identifier")]

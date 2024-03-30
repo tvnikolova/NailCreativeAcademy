@@ -1,14 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using NailCreativeAcademy.Infrastructure.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NailCreativeAcademy.Infrastructure.Data.SeedDataBase
+﻿namespace NailCreativeAcademy.Infrastructure.Data.SeedDataBase
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using Models;
     public class SaloonConfig : IEntityTypeConfiguration<Saloon>
     {
         public void Configure(EntityTypeBuilder<Saloon> builder)

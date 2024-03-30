@@ -10,7 +10,7 @@
         }
 
         [Key]
-        [Comment("Feedback;s board identifier")]
+        [Comment("Feedback's board identifier")]
         public int Id { get; set; }
 
         public ICollection<Feedback> Feedbacks { get; set; }

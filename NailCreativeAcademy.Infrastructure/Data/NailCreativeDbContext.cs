@@ -15,12 +15,12 @@
 
         }
         public DbSet<Course> Courses { get; set; } = null!;
-        public DbSet<CourseType> CourseTypes { get; set; } = null!;
+        public DbSet<CourseType> CoursesTypes { get; set; } = null!;
         public DbSet<EnrolledStudent> EnrolledStudents { get; set; } = null!;
         public DbSet<Trainer> Trainers { get; set; } = null!;
         public DbSet<Saloon> Saloons { get; set; } = null!;
         public DbSet<Feedback> Feedbacks { get; set; } = null!;
-        public DbSet<FeedbackBoard> FeedbackBoards { get; set; } = null!;
+        public DbSet<FeedbackBoard> FeedbacksBoards { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -33,7 +33,7 @@
                     .WithMany(sp => sp.EnrolledStudents)
                     .OnDelete(DeleteBehavior.Restrict);
 
-            builder.ApplyConfiguration(new CourseConfig());
+          
             builder.ApplyConfiguration(new CourseTypeConfig());
             builder.ApplyConfiguration(new SaloonConfig());
             builder.ApplyConfiguration(new TrainerConfig());
