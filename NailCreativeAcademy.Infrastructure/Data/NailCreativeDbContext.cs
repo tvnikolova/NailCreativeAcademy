@@ -33,7 +33,6 @@
                     .WithMany(sp => sp.EnrolledStudents)
                     .OnDelete(DeleteBehavior.Restrict);
 
-          
             builder.ApplyConfiguration(new CourseTypeConfig());
             builder.ApplyConfiguration(new SaloonConfig());
             builder.ApplyConfiguration(new TrainerConfig());
