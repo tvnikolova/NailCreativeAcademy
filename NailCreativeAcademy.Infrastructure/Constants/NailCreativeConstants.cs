@@ -4,7 +4,6 @@
 	{
 
 		public const string DateOProjectString = "dd/MM/yyyy HH:mm";
-
         public const int PhoneNumberLength = 15;
 
         //Trainer constants
