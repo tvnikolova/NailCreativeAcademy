@@ -353,7 +353,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.HasIndex("TrainerId");
 
-                    b.ToTable("Courses");
+                    b.ToTable("Courses", (string)null);
                 });
 
             modelBuilder.Entity("NailCreativeAcademy.Infrastructure.Data.Models.CourseType", b =>
@@ -373,7 +373,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CoursesTypes");
+                    b.ToTable("CoursesTypes", (string)null);
 
                     b.HasData(
                         new
@@ -402,7 +402,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("EnrolledStudents");
+                    b.ToTable("EnrolledStudents", (string)null);
                 });
 
             modelBuilder.Entity("NailCreativeAcademy.Infrastructure.Data.Models.Feedback", b =>
@@ -434,7 +434,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.HasIndex("FeedbackBoardId");
 
-                    b.ToTable("Feedbacks");
+                    b.ToTable("Feedbacks", (string)null);
                 });
 
             modelBuilder.Entity("NailCreativeAcademy.Infrastructure.Data.Models.FeedbackBoard", b =>
@@ -448,7 +448,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FeedbacksBoards");
+                    b.ToTable("FeedbacksBoards", (string)null);
                 });
 
             modelBuilder.Entity("NailCreativeAcademy.Infrastructure.Data.Models.Saloon", b =>
@@ -481,7 +481,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("Saloons");
+                    b.ToTable("Saloons", (string)null);
 
                     b.HasData(
                         new
@@ -523,7 +523,7 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Trainers");
+                    b.ToTable("Trainers", (string)null);
 
                     b.HasData(
                         new

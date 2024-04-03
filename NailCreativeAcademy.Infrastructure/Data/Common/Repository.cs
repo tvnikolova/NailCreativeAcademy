@@ -46,7 +46,7 @@
             return await DbSet<T>().FindAsync(id);
         }
 
-        public async  Task<int> SaveChangesAsync()
+        public async Task<int> SaveChangesAsync()
         {
             return await nailContext.SaveChangesAsync();
         }

@@ -9,6 +9,7 @@
         public string Duration { get; set; } = string.Empty;
         public string Image { get; set; } = string.Empty;
         public decimal Price { get; set; }
+        public int TrainerId { get; set; }
 
     }
 }

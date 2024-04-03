@@ -19,4 +19,8 @@
     <ProjectReference Include="..\NailCreativeAcademy.Core\NailCreativeAcademy.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\image\Course\" />
+  </ItemGroup>
+
 </Project>
