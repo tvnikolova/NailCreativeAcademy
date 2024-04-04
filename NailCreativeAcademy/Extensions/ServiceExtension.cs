@@ -2,13 +2,19 @@
 {
     using AspNetCore.Identity;
     using EntityFrameworkCore;
+    using NailCreativeAcademy.Core.Contracts.Course;
+    using NailCreativeAcademy.Core.Contracts;
+    using NailCreativeAcademy.Core.Services;
     using NailCreativeAcademy.Infrastructure.Data;
-    
+    using NailCreativeAcademy.Infrastructure.Data.Common;
 
     public static class ServiceExtension
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
+            services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ITrainerService, TrainerService>();
+
             return services;
         }
 
@@ -17,6 +23,9 @@
             var connectionString = config.GetConnectionString("DefaultConnection");
             services.AddDbContext<NailCreativeDbContext>(options =>
                  options.UseSqlServer(connectionString));
+
+            services.AddScoped<IRepository, Repository>();
+
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
