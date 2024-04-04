@@ -8,6 +8,8 @@
     using static Infrastructure.Constants.NailCreativeConstants;
     using static Core.Constants.MessageConstants;
     using System.Globalization;
+    using System.Security.Claims;
+
     using NailCreativeAcademy.Core.Services;
 
     [Authorize]
@@ -49,9 +51,12 @@
 
             return View(model);
         }
-        public IActionResult MyCourses()
+        public async Task<IActionResult> MyCourses(string userId)
         {
-            return View(new AllCourseModel());
+            userId = User.GetUserId();
+            IEnumerable<AllMyCourseModel> model = await courseService.MyCoursesAsync(userId);
+
+            return View(model);
         }
 
         [HttpGet]
