@@ -8,6 +8,7 @@
     using static Infrastructure.Constants.NailCreativeConstants;
     using static Core.Constants.MessageConstants;
     using System.Globalization;
+    using NailCreativeAcademy.Core.Services;
 
     [Authorize]
     public class CourseController : Controller
@@ -26,6 +27,7 @@
 
 
         [AllowAnonymous]
+        [HttpGet]
         public async Task<IActionResult> All()
         {
 
@@ -33,7 +35,20 @@
 
             return View(model);
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
 
+            if (await courseService.CourseExistAsyncById(id)==false)
+            {
+                return BadRequest();
+            }
+
+            var model = await courseService.DetailsAsync(id);
+
+            return View(model);
+        }
         public IActionResult MyCourses()
         {
             return View(new AllCourseModel());
@@ -70,12 +85,12 @@
                 return View(courseModel);
             }
 
-            if (await courseService.CourseExistAsync(courseModel.Name) == true)
+            if (await courseService.CourseExistAsyncByName(courseModel.Name) == true)
             {
                 ModelState.AddModelError(nameof(courseModel.Name), CourseExists);
             }
 
-            if (await trainerService.TrainerExistAsync(courseModel.Trainer) == false)
+            if (await trainerService.TrainerExistByNameAsync(courseModel.Trainer) == false)
             {
                 return BadRequest();
             }

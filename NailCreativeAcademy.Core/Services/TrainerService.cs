@@ -5,7 +5,7 @@
     using Models.Trainer;
     using Infrastructure.Data.Common;
     using Infrastructure.Data.Models;
-    public class TrainerService :ITrainerService
+    public class TrainerService : ITrainerService
     {
         private readonly IRepository repository;
         public TrainerService(IRepository repository)
@@ -27,10 +27,17 @@
             return newTrainer.Id;
         }
 
-        public async Task<bool> TrainerExistAsync(string trainerName)
+        public async Task<bool> TrainerExistByNameAsync(string trainerName)
         {
             return await repository.AllReadOnly<Trainer>()
                 .AnyAsync(c => c.Name == trainerName);
+        }
+
+
+        public async Task<bool> TrainerExistByIdAsync(int id)
+        {
+            return await repository.AllReadOnly<Trainer>()
+                  .AnyAsync(c => c.Id == id);
         }
 
         public async Task<int> GetTrainerId(string trainerName)
@@ -53,5 +60,6 @@
 
             return currTrainerId;
         }
+
     }
 }

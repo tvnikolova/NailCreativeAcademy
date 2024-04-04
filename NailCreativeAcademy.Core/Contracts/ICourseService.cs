@@ -4,8 +4,10 @@
     public interface ICourseService
     {
         Task<IEnumerable<CourseViewModel>> All();
+        Task<CourseDetailsViewModel> DetailsAsync(int id);
         Task<IEnumerable<CourseTypeViewModel>> GetCourseTypesAsync();
         Task<int> CreateAsync(CourseFormModel model, int trainerId);
-        Task<bool> CourseExistAsync(string courseName);
+        Task<bool> CourseExistAsyncByName(string courseName);
+        Task<bool> CourseExistAsyncById(int id);
     }
 }

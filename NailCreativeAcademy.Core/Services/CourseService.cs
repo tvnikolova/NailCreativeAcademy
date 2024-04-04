@@ -22,6 +22,7 @@
             var courses = await repository.AllReadOnly<Course>()
                                            .Select(c => new CourseViewModel()
                                            {
+                                               Id= c.Id,
                                                Name = c.Name,
                                                StartDate = c.StartDate.ToString(CultureInfo.InvariantCulture),
                                                Details = c.Details,
@@ -70,10 +71,32 @@
             return allTypes;
         }
 
-        public async Task<bool> CourseExistAsync(string courseName)
+        public async Task<bool> CourseExistAsyncByName(string courseName)
         {
             return await repository.AllReadOnly<Course>()
                 .AnyAsync(c => c.Name == courseName);
+        }
+        public async Task<bool> CourseExistAsyncById(int id)
+        {
+            return await repository.AllReadOnly<Course>()
+                .AnyAsync(c => c.Id == id);
+        }
+
+        public async Task<CourseDetailsViewModel> DetailsAsync(int id)
+        {
+            CourseDetailsViewModel courses = await repository.AllReadOnly<Course>()
+                                            .Where(c=>c.Id == id)
+                                            .Select(c => new CourseDetailsViewModel()
+                                            {
+                                                Id=c.Id,
+                                                Name = c.Name,
+                                                Details = c.Details,
+                                                Image = c.Image,
+
+                                            })
+                                            .FirstAsync();
+
+            return courses;
         }
     }
 }

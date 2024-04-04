@@ -5,7 +5,8 @@
     public interface ITrainerService
     {
         Task<int> CreateAsync(TrainerFormModel trainer);
-        Task<bool> TrainerExistAsync(string trainerName);
+        Task<bool> TrainerExistByNameAsync(string trainerName);
+        Task<bool> TrainerExistByIdAsync(int id);
         Task<int> GetTrainerId(string trainerName);
 
     }
