@@ -1,0 +1,26 @@
+﻿@model IEnumerable<AllMyCourseModel>
+
+@{
+    ViewData["Title"] = "Моите курсове";
+}
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="text-center row">
+    @foreach (var m in Model)
+    {
+        <div class="card" style="width: 18rem;">
+            <img src="~/image/Course/@m.Program" class="card-img-top" alt="" style="height : 16rem;width : 16rem;" />
+            <div class="card-body">
+                <h4 class="card-title mt-2">@m.Name</h4>
+                <h5 class="card-title mt-1">Начало: @m.StartDate</h5>
+                <hr />
+                <h3 class="card-title align-content-sm-center mt-1">Продължителност: @m.Duration</h3>
+            </div>           
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="Course" asp-action="Details" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Програма на курса</a>
+                <a asp-controller="Course" asp-action="Remove" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>
+            }
+        </div>
+    }
+</div>

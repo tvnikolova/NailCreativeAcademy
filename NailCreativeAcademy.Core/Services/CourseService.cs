@@ -1,12 +1,17 @@
 ﻿namespace NailCreativeAcademy.Core.Services
 {
-    using Infrastructure.Data.Common;
-    using Infrastructure.Data.Models;
-    using Microsoft.EntityFrameworkCore;
-    using Models.Course;
-    using NailCreativeAcademy.Core.Contracts.Course;
     using System.Globalization;
+    using Microsoft.EntityFrameworkCore;
+    using System.Security.Claims;
+
+    using Infrastructure.Data.Common;
+    using Infrastructure.Data.Models;    
+    using Models.Course;
+    using Contracts.Course;
+    
+    
     using static Infrastructure.Constants.NailCreativeConstants;
+    using Microsoft.AspNetCore.Identity;
 
     public class CourseService : ICourseService
     {
@@ -97,6 +102,35 @@
                                             .FirstAsync();
 
             return courses;
+        }
+
+        public async Task<IEnumerable<AllMyCourseModel>> MyCoursesAsync(string userId)
+        {
+            
+            var courses = await repository.AllReadOnly<EnrolledStudent>()
+                                            .AsNoTracking()
+                                            .Where(s=>s.StudentId == userId)
+                                           .Select(es => new AllMyCourseModel()
+                                           {
+                                              Id = es.CourseId,
+                                              Name = es.Course.Name,
+                                              Program = es.Course.Program,
+                                              Duration = es.Course.Duration,
+                                              Image = es.Course.Image,
+                                              StartDate = es.Course.StartDate.ToString(DateOProjectString)                                           
+                                           })
+                                           .ToListAsync();
+
+            return courses;
+
+        }
+
+        public async Task<bool> MyCourseExists(string userId, int courseId)
+        {
+
+            return await repository.AllReadOnly<EnrolledStudent>()
+                .AnyAsync(c => c.StudentId== userId && c.CourseId== courseId);
+            
         }
     }
 }
