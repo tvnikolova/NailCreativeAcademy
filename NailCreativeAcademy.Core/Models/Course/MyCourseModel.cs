@@ -1,6 +1,6 @@
 ﻿namespace NailCreativeAcademy.Core.Models.Course
 {
-    public class AllMyCourseModel
+    public class MyCourseModel
     {
         public int Id { get; set; }
 
@@ -9,6 +9,7 @@
         public string Image { get; set; } = string.Empty;
         public string StartDate {  get; set; } = string.Empty;
         public string Duration {  get; set; } = string.Empty;
+        public decimal Price {  get; set; }
 
     }
 }

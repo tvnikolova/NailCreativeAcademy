@@ -29,7 +29,7 @@
                                            {
                                                Id= c.Id,
                                                Name = c.Name,
-                                               StartDate = c.StartDate.ToString(CultureInfo.InvariantCulture),
+                                               StartDate = c.StartDate.ToString(DateOProjectString),
                                                Details = c.Details,
                                                Image = c.Image,
                                                Duration = c.Duration,
@@ -54,6 +54,7 @@
                 Duration = model.Duration,
                 Price = model.Price,
                 CourseTypeId = model.CourseTypeId,
+                Program = model.Program,
                 TrainerId = trainerId,
                 Image = model.Image,
             };
@@ -104,19 +105,20 @@
             return courses;
         }
 
-        public async Task<IEnumerable<AllMyCourseModel>> MyCoursesAsync(string userId)
+        public async Task<IEnumerable<MyCourseModel>> MyCoursesAsync(string userId)
         {
             
             var courses = await repository.AllReadOnly<EnrolledStudent>()
                                             .AsNoTracking()
                                             .Where(s=>s.StudentId == userId)
-                                           .Select(es => new AllMyCourseModel()
+                                           .Select(es => new MyCourseModel()
                                            {
                                               Id = es.CourseId,
                                               Name = es.Course.Name,
                                               Program = es.Course.Program,
                                               Duration = es.Course.Duration,
                                               Image = es.Course.Image,
+                                              Price = es.Course.Price,
                                               StartDate = es.Course.StartDate.ToString(DateOProjectString)                                           
                                            })
                                            .ToListAsync();
@@ -127,10 +129,43 @@
 
         public async Task<bool> MyCourseExists(string userId, int courseId)
         {
-
             return await repository.AllReadOnly<EnrolledStudent>()
                 .AnyAsync(c => c.StudentId== userId && c.CourseId== courseId);
-            
+        }
+
+        public async Task<string> JoinedCourse(string userId, int courseId)
+        {
+            EnrolledStudent newCourseToAdd =  new EnrolledStudent()
+            {
+                StudentId = userId, 
+                CourseId = courseId
+            };
+
+            await repository.AddAsync(newCourseToAdd);
+            await repository.SaveChangesAsync();
+
+            return newCourseToAdd.StudentId;
+
+        }
+
+        public async Task<MyCourseModel> GetCourseByIdAsync(int id)
+        {
+            var foundedCourse = await repository.AllReadOnly<Course>()
+                                                 .Where(c=>c.Id== id)
+                                                 .Select(c=> new MyCourseModel()
+                                                 {
+                                                     Id = c.Id,
+                                                     Name = c.Name,
+                                                     Duration = c.Duration,
+                                                     Program = c.Program,
+                                                     StartDate = c.StartDate.ToString(DateOProjectString),
+                                                     Price = c.Price,
+                                                     Image=c.Image
+                                                 })
+                                                 .FirstAsync();
+
+            return foundedCourse;
+           
         }
     }
 }

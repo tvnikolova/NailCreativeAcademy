@@ -54,7 +54,7 @@
         public async Task<IActionResult> MyCourses(string userId)
         {
             userId = User.GetUserId();
-            IEnumerable<AllMyCourseModel> model = await courseService.MyCoursesAsync(userId);
+            IEnumerable<MyCourseModel> model = await courseService.MyCoursesAsync(userId);
 
             return View(model);
         }
@@ -109,9 +109,32 @@
         }
 
         [HttpGet]
-        public IActionResult ProgramAsync(int id)
+        public async Task<IActionResult> CourseProgram(int id)
         {
-            return View(new CourseDetailsViewModel());
+            if(await courseService.CourseExistAsyncById(id)==false)
+            {
+                return BadRequest();
+            }
+
+           var  selectedCourse = await courseService.GetCourseByIdAsync(id);
+
+            return View(selectedCourse);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Join(int id)
+        {
+            string userId = User.GetUserId();
+            bool enrolledCourse = await courseService.MyCourseExists(userId, id);
+
+            if(enrolledCourse)
+            {
+                return BadRequest();
+            }
+
+            string newCoursetoAdd = await courseService.JoinedCourse(userId, id);
+
+            return RedirectToAction(nameof(MyCourses));
         }
 
         [HttpGet]
@@ -123,7 +146,7 @@
         [HttpPost]
         public async Task<IActionResult> EditAsync(int id, CourseFormModel course)
         {
-            return RedirectToAction(nameof(ProgramAsync));
+            return RedirectToAction();
         }
     }
 }

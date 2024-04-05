@@ -36,6 +36,9 @@
         public decimal Price { get; set; }
 
         [Required]
+        public string Program { get; set; } = string.Empty;
+
+        [Required]
         public int CourseTypeId { get; set; }
 
         [Required]

@@ -10,6 +10,8 @@
         Task<bool> CourseExistAsyncByName(string courseName);
         Task<bool> CourseExistAsyncById(int id);
         Task<bool> MyCourseExists(string userId, int courseId);
-        Task <IEnumerable<AllMyCourseModel>> MyCoursesAsync(string userId);
+        Task <IEnumerable<MyCourseModel>> MyCoursesAsync(string userId);
+        Task<string> JoinedCourse(string userId, int courseId);
+        Task <MyCourseModel> GetCourseByIdAsync(int id);
     }
 }
