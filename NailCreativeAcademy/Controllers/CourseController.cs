@@ -51,9 +51,9 @@
 
             return View(model);
         }
-        public async Task<IActionResult> MyCourses(string userId)
+        public async Task<IActionResult> MyCourses()
         {
-            userId = User.GetUserId();
+            string userId = User.GetUserId();
             IEnumerable<MyCourseModel> model = await courseService.MyCoursesAsync(userId);
 
             return View(model);
@@ -137,6 +137,18 @@
             return RedirectToAction(nameof(MyCourses));
         }
 
+
+        [HttpGet]       
+        public async Task<IActionResult> Leave(int id)
+        {
+             string userId = User.GetUserId();
+           
+
+            await courseService.RemoveMyCourse(id, userId);
+
+            return RedirectToAction(nameof(MyCourses));
+
+        }
         [HttpGet]
         public IActionResult Edit(int id)
         {
