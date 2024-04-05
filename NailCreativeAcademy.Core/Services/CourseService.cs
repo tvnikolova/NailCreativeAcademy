@@ -133,6 +133,15 @@
                 .AnyAsync(c => c.StudentId== userId && c.CourseId== courseId);
         }
 
+        public async Task<EnrolledStudent> GetMyEnrolledCourseById(string userId, int courseId)
+        {
+            var foundedCourse = await repository.AllReadOnly<EnrolledStudent>()
+                                                 .Where(c => c.CourseId == courseId && c.StudentId == userId)
+                                                 .FirstAsync();
+
+            return foundedCourse;
+
+        }
         public async Task<string> JoinedCourse(string userId, int courseId)
         {
             EnrolledStudent newCourseToAdd =  new EnrolledStudent()
@@ -166,6 +175,22 @@
 
             return foundedCourse;
            
+        }
+
+        public async Task RemoveMyCourse(int courseId, string userId)
+        {
+            var foundCourse = await repository.AllReadOnly<EnrolledStudent>()
+                                               .Where(c=>c.CourseId==courseId && c.StudentId==userId)
+                                               .FirstOrDefaultAsync();
+
+            if (foundCourse != null)
+            {
+                await repository.RemoveAsync<EnrolledStudent>(courseId,userId);
+                await repository.SaveChangesAsync();
+            }
+
+            
+
         }
     }
 }
