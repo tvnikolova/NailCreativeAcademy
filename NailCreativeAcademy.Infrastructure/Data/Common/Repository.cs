@@ -1,6 +1,7 @@
 ﻿namespace NailCreativeAcademy.Infrastructure.Data.Common
 {
     using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public class Repository : IRepository
@@ -40,15 +41,29 @@
                 DbSet<T>().Remove(entity);
             }
         }
-
+       
         public async Task<T?> GetByIdAsync<T>(object id) where T : class
         {
             return await DbSet<T>().FindAsync(id);
         }
 
+        public async Task<T?> GetByBothIdAsync<T>(object id, object secondId) where T : class
+        {
+            return await DbSet<T>().FindAsync(id, secondId);
+        }
+        public async Task RemoveAsync<T>(object id, object secondId) where T : class
+        {
+            T? entity = await GetByBothIdAsync<T>(id, secondId);
+
+            if (entity != null)
+            {
+                DbSet<T>().Remove(entity);
+            }
+        }
         public async  Task<int> SaveChangesAsync()
         {
             return await nailContext.SaveChangesAsync();
         }
+
     }
 }
