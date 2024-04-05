@@ -1,0 +1,15 @@
+﻿@model MyCourseModel
+
+@{
+    ViewData["Title"] = "Програма на курса";
+}
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="text-center">
+    <img src="~/image/Course/CourseProgram/@Model.Program" class="card-img-top" alt="" />
+    <a asp-controller="Course" asp-action="MyCourses" class="btn btn-success mb-2 w-100 p-3 fw-bold">Към моите курсове</a>
+
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

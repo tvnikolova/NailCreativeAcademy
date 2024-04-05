@@ -12,8 +12,8 @@
 <div class="text-center row">
     @foreach (var m in Model)
     {
-        <div class="card" style="width: 18rem;">
-            <img src="~/image/Course/@m.Image" class="card-img-top" alt="" style="height : 16rem;width : 16rem;"/>
+        <div class="card" style="width: 22rem;">
+            <img src="~/image/Course/@m.Image" class="card-img-top" alt="" style="height : 16rem;width : 20rem;" />
             <div class="card-body">
                 <h4 class="card-title mt-2">@m.Name</h4>                
                 <h5 class="card-title mt-1">Начало: @m.StartDate</h5>
@@ -25,12 +25,15 @@
             {
                 if (await courseService.MyCourseExists(User.GetUserId(), m.Id))
                 {
-                    <a asp-controller="Course" asp-action="Remove" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>
+                    <a asp-controller="Course" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>
                 }
-                <a asp-controller="Course" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>                
-                <form class="input-group-sm" asp-controller="Course" asp-action="Join" asp-route-id="@m.Id">
-                    <input type="submit" value="Добави" class="fs-6 btn btn-info mb-2 w-100 p-3 fw-bold" />
-                </form>
+                else
+                {
+                    <form class="input-group-sm" asp-controller="Course" asp-action="Join" asp-route-id="@m.Id">
+                        <input type="submit" value="Добави" class="fs-6 btn btn-info mb-2 w-100 p-3 fw-bold" />
+                    </form>
+                }
+               <a asp-controller="Course" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>               
             }
             else 
             {
