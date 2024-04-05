@@ -19,7 +19,7 @@
             @if (User?.Identity?.IsAuthenticated ?? false)
             {
                 <a asp-controller="Course" asp-action="CourseProgram" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Програма на курса</a>
-                <a asp-controller="Course" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>
+                <a asp-controller="Course" asp-action="Leave" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Отписване от курса</a>
             }
         </div>
     }

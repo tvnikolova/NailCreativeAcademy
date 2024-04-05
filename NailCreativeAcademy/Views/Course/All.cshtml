@@ -23,11 +23,7 @@
             <a asp-controller="Course" asp-action="Details" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Информация за курса</a>
             @if (User?.Identity?.IsAuthenticated ?? false)
             {
-                if (await courseService.MyCourseExists(User.GetUserId(), m.Id))
-                {
-                    <a asp-controller="Course" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>
-                }
-                else
+                if (!await courseService.MyCourseExists(User.GetUserId(), m.Id))
                 {
                     <form class="input-group-sm" asp-controller="Course" asp-action="Join" asp-route-id="@m.Id">
                         <input type="submit" value="Добави" class="fs-6 btn btn-info mb-2 w-100 p-3 fw-bold" />
