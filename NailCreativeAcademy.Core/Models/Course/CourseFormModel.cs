@@ -5,12 +5,11 @@
     using static Constants.MessageConstants;
     public class CourseFormModel
     {
-
-
         public CourseFormModel()
         {
             this.CourseTypes = new List<CourseTypeViewModel>();
         }
+
         [Required]
         [StringLength(CourseNameMaxLength, MinimumLength = CourseNameMinLength,
             ErrorMessage = LengthStringRequired)]

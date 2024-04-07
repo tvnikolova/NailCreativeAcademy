@@ -157,7 +157,7 @@
 
         }
 
-        public async Task<MyCourseModel> GetCourseByIdAsync(int id)
+        public async Task<MyCourseModel> GetMyCourseByIdAsync(int id)
         {
             var foundedCourse = await repository.AllReadOnly<Course>()
                                                  .Where(c=>c.Id== id)
@@ -192,5 +192,77 @@
             
 
         }
+
+        public async Task<CourseFormModel> GetCourseToEditByIdAsync(int id)
+        {
+            var courses = await repository.AllReadOnly<Course>()
+                                            .Where(c => c.Id == id)
+                                           .Select(c => new CourseFormModel()
+                                           {
+                                               Name = c.Name,
+                                               Program = c.Program,
+                                               Duration = c.Duration,
+                                               Image = c.Image,
+                                               Price = c.Price,
+                                               StartDate = c.StartDate.ToString(DateOProjectString),
+                                               Trainer = c.Trainer.Name
+                                           })
+                                           .FirstAsync();
+
+            return courses;
+        }
+
+        public async Task EditAsync(CourseFormModel model, int id, int trainerId)
+        {
+            var courseToEdit = await repository.All<Course>()
+                                                .Where(c => c.Id == id)
+                                                .FirstOrDefaultAsync();
+            var courseTypes = await GetCourseTypesAsync();
+
+            if (courseToEdit != null)
+            {
+                courseToEdit.Name = model.Name;
+                courseToEdit.Program = model.Program;
+                courseToEdit.Duration = model.Duration;
+                courseToEdit.Image = model.Image;
+                courseToEdit.Price = model.Price;
+                courseToEdit.StartDate = DateTime.ParseExact(model.StartDate, DateOProjectString, CultureInfo.InvariantCulture);
+                courseToEdit.TrainerId = trainerId;
+                
+                await repository.SaveChangesAsync();
+            }
+           
+        }
+
+        
+        public async Task<DeleteCourseViewModel> GetCourseToDeleteAsync(int courseId)
+        {
+            var foundedCourse = await repository.AllReadOnly<Course>()
+                                               .Where(c => c.Id == courseId)
+                                               .FirstOrDefaultAsync();
+
+            DeleteCourseViewModel courseToDelete = new DeleteCourseViewModel();
+
+            if (foundedCourse != null )
+            {
+
+                courseToDelete.Id = foundedCourse.Id;
+                courseToDelete.Name = foundedCourse.Name;
+                courseToDelete.StartDate = foundedCourse.StartDate.ToString(DateOProjectString);
+                
+                
+            }
+
+            return courseToDelete;
+        }
+
+        public async Task DeleteAsync(int courseId)
+        {
+            
+                await repository.DeleteAsync<Course>(courseId);
+                await repository.SaveChangesAsync();
+           
+        }
+
     }
 }

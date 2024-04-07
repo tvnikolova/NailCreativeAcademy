@@ -14,7 +14,14 @@
         Task<bool> MyCourseExists(string userId, int courseId);
         Task <IEnumerable<MyCourseModel>> MyCoursesAsync(string userId);
         Task<string> JoinedCourse(string userId, int courseId);
-        Task <MyCourseModel> GetCourseByIdAsync(int id);
+        Task <MyCourseModel> GetMyCourseByIdAsync(int id);
+
+        Task<CourseFormModel> GetCourseToEditByIdAsync(int id);
+
+        Task EditAsync(CourseFormModel model, int id, int trainerId);
+        Task DeleteAsync(int courseId);
+
+        Task <DeleteCourseViewModel> GetCourseToDeleteAsync(int courseId);
         Task<EnrolledStudent> GetMyEnrolledCourseById(string userId, int courseId);
         Task RemoveMyCourse(int courseId, string userId);
     }
