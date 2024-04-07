@@ -29,7 +29,9 @@
                         <input type="submit" value="Добави" class="fs-6 btn btn-info mb-2 w-100 p-3 fw-bold" />
                     </form>
                 }
-               <a asp-controller="Course" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>               
+               <a asp-controller="Course" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>
+               <a asp-controller="Course" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахване на курса</a>
+                
             }
             else 
             {
