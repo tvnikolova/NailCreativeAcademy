@@ -11,6 +11,7 @@
     using System.Security.Claims;
 
     using NailCreativeAcademy.Core.Services;
+    using NailCreativeAcademy.Infrastructure.Data.Models;
 
     [Authorize]
     public class CourseController : Controller
@@ -37,6 +38,7 @@
 
             return View(model);
         }
+
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Details(int id)
@@ -51,6 +53,8 @@
 
             return View(model);
         }
+
+        [HttpGet]
         public async Task<IActionResult> MyCourses()
         {
             string userId = User.GetUserId();
@@ -116,7 +120,7 @@
                 return BadRequest();
             }
 
-           var  selectedCourse = await courseService.GetCourseByIdAsync(id);
+           var  selectedCourse = await courseService.GetMyCourseByIdAsync(id);
 
             return View(selectedCourse);
         }
@@ -149,16 +153,83 @@
             return RedirectToAction(nameof(MyCourses));
 
         }
+
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var foundedCourse = await courseService.GetCourseToEditByIdAsync(id);
+            var courseTypes = await courseService.GetCourseTypesAsync();
+
+            if(foundedCourse == null)
+            {
+                return BadRequest();
+            }
+          
+            foundedCourse.CourseTypes = courseTypes;
+            return View(foundedCourse);
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditAsync(int id, CourseFormModel course)
+        public async Task<IActionResult> EditAsync(CourseFormModel course, int id, int trainerId)
         {
-            return RedirectToAction();
+            DateTime startDate = DateTime.Now;
+           
+            if (!DateTime.TryParseExact(course.StartDate, DateOProjectString, CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
+            {
+                ModelState.AddModelError(nameof(course.StartDate), $"Invalid format. The correct format is {DateOProjectString}.");
+            }
+           
+            if (!ModelState.IsValid)
+            {
+                course.CourseTypes = await courseService.GetCourseTypesAsync();
+                return View(course);
+            }
+
+            if (await courseService.CourseExistAsyncById(id) == false)
+            {
+                ModelState.AddModelError(nameof(course.Name), CourseNotExist);
+            }
+
+            if (await trainerService.TrainerExistByNameAsync(course.Trainer) == false)
+            {
+                return BadRequest();
+            }
+            
+
+
+            trainerId = await trainerService.GetTrainerId(course.Trainer);
+            await  courseService.EditAsync(course, id, trainerId);
+
+            return RedirectToAction(nameof(All));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var foundCourse = await courseService.CourseExistAsyncById(id);
+
+            if (!foundCourse)
+            {
+                return BadRequest();
+            }
+           
+            DeleteCourseViewModel courseToDelete = await courseService.GetCourseToDeleteAsync(id);
+
+            return View(courseToDelete);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ConfirmDelete (int id)
+        {
+            var foundCourse = await courseService.CourseExistAsyncById(id);
+            if(!foundCourse)
+            {
+                return BadRequest();
+            }
+
+             await courseService.DeleteAsync(id);
+
+            return RedirectToAction(nameof(All));
         }
     }
 }
