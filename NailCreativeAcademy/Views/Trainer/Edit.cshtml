@@ -1,0 +1,13 @@
+﻿@model TrainerFormModel
+@{
+    ViewData["Title"] = "Редактиране";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<partial name="_TrainerFormPartial" model="@Model" />
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

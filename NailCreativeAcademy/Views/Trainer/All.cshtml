@@ -1,0 +1,37 @@
+﻿@model ICollection<TrainerViewModel>
+
+@{
+    ViewData["Title"] = "Обучители";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+
+<div class="text-center row">
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        <a asp-controller="Trainer" asp-action="Create" class="btn btn-success mb-2 w-100 p-3 fw-bold">Добави обучител</a>
+
+    }
+    @foreach (var m in Model)
+    {
+        <div class="card" style="width: 22rem;">
+            <img src="~/image/Trainers/@(m.Name + ".jpg")" class="card-img-top" alt="" style="height : 25rem;width : 20rem;" />
+            <div class="card-body">
+                <h3 class="card-title mt-2">@m.Name</h3>
+                <h5 class="card-title mt-1">@m.About</h5>
+                <hr />
+            </div>           
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="Trainer" asp-action="Edit" asp-route-id ="@m.Id"class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редактиране</a>
+                <a asp-controller="Trainer" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>
+            }
+        </div>
+    }
+   
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
