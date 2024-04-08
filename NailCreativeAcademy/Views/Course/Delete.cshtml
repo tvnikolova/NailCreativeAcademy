@@ -1,4 +1,6 @@
-﻿@model DeleteCourseViewModel
+﻿@using NailCreativeAcademy.Core.Contracts.Course
+@model DeleteCourseViewModel
+@inject ICourseService courseService
 @{
     ViewBag.Title = "Премахване на курсa";
 }
@@ -11,15 +13,23 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title text-center">@Model.Name</h3>
-                <p class="mb-0"><strong>Date and Time:</strong> @Model.StartDate</p>
-                <p class="text-danger mt-3">"Наистина ли искате да премахнете курса?"</p>
+                <p class="mb-0"><strong>Date and Time:</strong> @Model.StartDate</p>              
             </div>
             <div class="card-footer">
-                <form asp-action="ConfirmDelete" method="post">
-                    <input type="hidden" asp-for="Id" />
-                    <button type="submit" class="btn btn-danger">Изтриване</button>
+                @if(await courseService.CourseHasEnrolledStudent(Model.Id))
+                {
+                    <p class="text-danger mt-3">"!Не можете да изтриете курса. В курсът има записан/и студент/и!"</p>
                     <a asp-action="All" class="btn btn-secondary">Назад</a>
-                </form>
+                }
+                else
+                {
+                    <p class="text-danger mt-3">"Наистина ли искате да премахнете курса?"</p>
+                    <form asp-action="ConfirmDelete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <button type="submit" class="btn btn-danger">Изтриване</button>
+                    </form>
+                }
+               
             </div>
         </div>
     </div>
