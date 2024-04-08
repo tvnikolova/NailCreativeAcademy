@@ -43,6 +43,7 @@
 
         }
 
+
         public async Task<int> CreateAsync(CourseFormModel model, int trainerId)
         {
             Course newCourse = new Course()

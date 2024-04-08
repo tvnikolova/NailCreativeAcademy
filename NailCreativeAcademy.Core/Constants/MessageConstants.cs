@@ -2,10 +2,11 @@
 {
     public static class MessageConstants
     {
-        public const string LengthStringRequired = "The field {0} is required. The {0} must be at lest {2} and maximum {1} symbols.";
-        public const string TrainerNotExits = "The trainer is not exist. Please first add trainer!";
-        public const string CourseExists = "The course name exist!";
-        public const string CourseNotExist = "The course {0} not exist!";
+        public const string LengthStringRequired = "Полето {0} е задължително .  {0} трабва да е най-малко {2} не повече от {1} символа.";
+        public const string TrainerNotExits = "Посоченият обучител не съществува. Моля първо го добавете!";
+        public const string CourseExists = "Курс с име {0}същестува";
+        public const string CourseNotExist = "Курсът {0} не съществува!";
         public const string CourseHasEnrolledStudent = "Не може да изтриете курса - има записан/и студент/и!";
+        public const string TrinerNameExists = "Обучител с посоченото име вече съществува!";
     }
 }
