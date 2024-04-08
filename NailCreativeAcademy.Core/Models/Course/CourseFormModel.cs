@@ -32,12 +32,15 @@
         public string Duration { get; set; } = string.Empty;
 
         [Required]
+        [Display(Name = "Price")]
         public decimal Price { get; set; }
 
         [Required]
+        [Display(Name = "Program")]
         public string Program { get; set; } = string.Empty;
 
         [Required]
+        
         public int CourseTypeId { get; set; }
 
         [Required]

@@ -227,6 +227,7 @@
                 courseToEdit.Image = model.Image;
                 courseToEdit.Price = model.Price;
                 courseToEdit.StartDate = DateTime.ParseExact(model.StartDate, DateOProjectString, CultureInfo.InvariantCulture);
+                courseToEdit.EndDate = DateTime.ParseExact(model.EndDate, DateOProjectString, CultureInfo.InvariantCulture);
                 courseToEdit.TrainerId = trainerId;
                 
                 await repository.SaveChangesAsync();
@@ -256,13 +257,20 @@
             return courseToDelete;
         }
 
+
         public async Task DeleteAsync(int courseId)
         {
-            
-                await repository.DeleteAsync<Course>(courseId);
-                await repository.SaveChangesAsync();
+            await repository.DeleteAsync<Course>(courseId);
+            await repository.SaveChangesAsync();
            
         }
 
+        public async Task<bool> CourseHasEnrolledStudent(int courseId)
+        {
+           return await repository.AllReadOnly<EnrolledStudent>()
+                                               .Where(c => c.CourseId == courseId)
+                                               .AnyAsync();
+
+        }
     }
 }

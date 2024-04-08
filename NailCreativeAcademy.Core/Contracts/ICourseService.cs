@@ -11,12 +11,14 @@
         Task<int> CreateAsync(CourseFormModel model, int trainerId);
         Task<bool> CourseExistAsyncByName(string courseName);
         Task<bool> CourseExistAsyncById(int id);
+        Task<bool> CourseHasEnrolledStudent(int courseId);
         Task<bool> MyCourseExists(string userId, int courseId);
         Task <IEnumerable<MyCourseModel>> MyCoursesAsync(string userId);
         Task<string> JoinedCourse(string userId, int courseId);
         Task <MyCourseModel> GetMyCourseByIdAsync(int id);
 
         Task<CourseFormModel> GetCourseToEditByIdAsync(int id);
+
 
         Task EditAsync(CourseFormModel model, int id, int trainerId);
         Task DeleteAsync(int courseId);
