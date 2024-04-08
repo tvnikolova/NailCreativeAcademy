@@ -6,5 +6,6 @@
         public const string TrainerNotExits = "The trainer is not exist. Please first add trainer!";
         public const string CourseExists = "The course name exist!";
         public const string CourseNotExist = "The course {0} not exist!";
+        public const string CourseHasEnrolledStudent = "Не може да изтриете курса - има записан/и студент/и!";
     }
 }
