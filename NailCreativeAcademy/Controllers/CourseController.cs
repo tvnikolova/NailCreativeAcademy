@@ -221,14 +221,15 @@
         [HttpPost]
         public async Task<IActionResult> ConfirmDelete (int id)
         {
-            var foundCourse = await courseService.CourseExistAsyncById(id);
-            if(!foundCourse)
+            var foundCourse = await courseService.GetCourseToDeleteAsync(id);
+
+            if(foundCourse == null)
             {
                 return BadRequest();
             }
-
-             await courseService.DeleteAsync(id);
-
+            
+                await courseService.DeleteAsync(id);
+           
             return RedirectToAction(nameof(All));
         }
     }
