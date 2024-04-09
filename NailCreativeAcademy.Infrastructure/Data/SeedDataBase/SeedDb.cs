@@ -32,9 +32,9 @@
             {
                 Id = "b8b63dd7e8f14a01b3d4ef4bb901b2e4",
                 UserName = "t_nikolova1985@abv.bg",
-                NormalizedUserName = "t_nikolova1985@abv.bg",
+                NormalizedUserName = "T_NIKOLOVA1985@ABV.BG",
                 Email = "t_nikolova1985@abv.bg",
-                NormalizedEmail = "student1@abv.bg"
+                NormalizedEmail = "T_NIKOLOVA1985@ABV.BG"
             };
                 AdminUser.PasswordHash =
                 hasher.HashPassword(AdminUser, "tn123456");
@@ -43,9 +43,9 @@
             {
                 Id = "68a865ce-5b33-4275-a460-dc00683172d2",
                 UserName = "student1@abv.bg",
-                NormalizedUserName = "student1@abv.bg",
+                NormalizedUserName = "STUDENT1@ABV.BG",
                 Email = "student1@abv.bg",
-                NormalizedEmail = "student1@abv.bg"
+                NormalizedEmail = "STUDENT1@ABV.BG"
             };
               StudentUser1.PasswordHash =
                     hasher.HashPassword(StudentUser1, "st1123456");
@@ -54,9 +54,9 @@
             {
                 Id = "714e73f4716d4cf9946d494ed0d72cf7",
                 UserName = "student2@abv.bg",
-                NormalizedUserName = "student2@abv.bg",
+                NormalizedUserName = "STUDENT2@ABV.BG",
                 Email = "student2@abv.bg",
-                NormalizedEmail = "student2@abv.bg"
+                NormalizedEmail = "STUDENT2@ABV.BG"
             };
              StudentUser2.PasswordHash =
                   hasher.HashPassword(StudentUser2, "st2654321");
@@ -65,9 +65,9 @@
             {
                 Id = "cf756f58ca9146f2889a54a32cde2dfc",
                 UserName = "client1@abv.bg",
-                NormalizedUserName = "client1@abv.bg",
+                NormalizedUserName = "CLIENT1@ABV.BG",
                 Email = "client1@abv.bg",
-                NormalizedEmail = "client1@abv.bg"
+                NormalizedEmail = "CLIENT1@ABV.BG"
             };
             Client1.PasswordHash =
                  hasher.HashPassword(Client1, "cl123456");
