@@ -273,5 +273,15 @@
                                                .AnyAsync();
 
         }
+
+        public async Task<int> CountOfEnrolledStudents(int courseId)
+        {
+            List<EnrolledStudent> enrolledStudents = await repository.AllReadOnly<EnrolledStudent>()
+                                                                       .Where(es=>es.CourseId==courseId)
+                                                                       .ToListAsync();
+            int countOfEnrolledStudents =  enrolledStudents.Count();
+
+            return countOfEnrolledStudents;
+        }
     }
 }
