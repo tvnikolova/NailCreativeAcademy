@@ -12,7 +12,7 @@ using NailCreativeAcademy.Infrastructure.Data;
 namespace NailCreativeAcademy.Infrastructure.Migrations
 {
     [DbContext(typeof(NailCreativeDbContext))]
-    [Migration("20240330145319_SeedDataBase")]
+    [Migration("20240409083820_SeedDataBase")]
     partial class SeedDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,15 +145,15 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                         {
                             Id = "b8b63dd7e8f14a01b3d4ef4bb901b2e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "66b08e31-7968-4235-b096-cd17dc7d3f1f",
+                            ConcurrencyStamp = "6757fee8-14db-4a86-9b28-9c8884f325aa",
                             Email = "t_nikolova1985@abv.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "student1@abv.bg",
-                            NormalizedUserName = "t_nikolova1985@abv.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKErmbvEiTTBuAMx8GbcYZljfLo7WI8cALkWH545xfTRnmlSARzoaeSdpDZRcXBf0g==",
+                            NormalizedEmail = "T_NIKOLOVA1985@ABV.BG",
+                            NormalizedUserName = "T_NIKOLOVA1985@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEGhmnPuZWy0ieqrAD+Efajj3auFAgvufr2vJ+p0OBnqzPI0yTjQ42eubAx4uZCdxg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9d7ef027-4fc1-4904-a69f-e65bde5c9629",
+                            SecurityStamp = "6d1166c1-fd30-49d7-ab3a-6c554438d59f",
                             TwoFactorEnabled = false,
                             UserName = "t_nikolova1985@abv.bg"
                         },
@@ -161,15 +161,15 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                         {
                             Id = "68a865ce-5b33-4275-a460-dc00683172d2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "55158165-0366-400d-a56b-d6f07551064d",
+                            ConcurrencyStamp = "57b9ff64-db5c-483f-bfd4-f02858e17e34",
                             Email = "student1@abv.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "student1@abv.bg",
-                            NormalizedUserName = "student1@abv.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKVDipW2681dfjty6iNCzhCj/eesI3hS6eH6QjJweKEA3jYih1UwxLMDwKJK7PJ3Jg==",
+                            NormalizedEmail = "STUDENT1@ABV.BG",
+                            NormalizedUserName = "STUDENT1@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAECvbz/KX2jjxsPBgDCbwHLnTnKptmuWNw1MK19ZHs7UNDmSGiNzoFTi/U/9lQ/jLXg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6f979a33-7c6e-4dab-8c4a-148efe79983f",
+                            SecurityStamp = "c48dee2f-21a1-4252-bc10-17fb3fb33b85",
                             TwoFactorEnabled = false,
                             UserName = "student1@abv.bg"
                         },
@@ -177,15 +177,15 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                         {
                             Id = "714e73f4716d4cf9946d494ed0d72cf7",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3cd8885f-6d25-48a9-b30b-39648506a0d5",
+                            ConcurrencyStamp = "ae6c78f4-5ff5-4765-b482-1a9cc9a76bbb",
                             Email = "student2@abv.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "student2@abv.bg",
-                            NormalizedUserName = "student2@abv.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAIHcfGcuXIPbKUpSW+ZtzvcIgoOe38Mr4yhDkjgNed5veib5RXE3E44MsU6pg2/bg==",
+                            NormalizedEmail = "STUDENT2@ABV.BG",
+                            NormalizedUserName = "STUDENT2@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHNdOlsmPHo89bL6jpqBa/NvWe9Zjj3SGvycZwtnFKXbtMP/4D48rkf4J/maCn3lsQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "78282afc-6a9a-42db-b2c5-46a22e4233be",
+                            SecurityStamp = "712c79ea-8eef-4332-a743-c935f203f472",
                             TwoFactorEnabled = false,
                             UserName = "student2@abv.bg"
                         },
@@ -193,15 +193,15 @@ namespace NailCreativeAcademy.Infrastructure.Migrations
                         {
                             Id = "cf756f58ca9146f2889a54a32cde2dfc",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "879d315e-8058-4ee1-bb40-5aa14cdf2d7e",
+                            ConcurrencyStamp = "8a4816d4-bb26-4efa-8d76-256956055a93",
                             Email = "client1@abv.bg",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            NormalizedEmail = "client1@abv.bg",
-                            NormalizedUserName = "client1@abv.bg",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGpGPkP8Nd8ZtKtY4zzS52RaaHKMROr2pEQxfK7KYp2YUHlG8wS2g3/inBNCIhWuPQ==",
+                            NormalizedEmail = "CLIENT1@ABV.BG",
+                            NormalizedUserName = "CLIENT1@ABV.BG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAddtTf5KMXehvMcVwF5JtSLuQGj/X/G2VDuyhvcBivI7l8KNsReCdD+HFMBVFWiqA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cc62363b-b6e4-4bc0-8454-1634c2b8d7e7",
+                            SecurityStamp = "d4a4642d-cd03-4084-bfb5-715034c14377",
                             TwoFactorEnabled = false,
                             UserName = "client1@abv.bg"
                         });
