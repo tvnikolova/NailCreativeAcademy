@@ -32,11 +32,13 @@
         public string Duration { get; set; } = string.Empty;
 
         [Required]
-        [Display(Name = "Price")]
+        [Range(typeof(decimal),CoursePriceMin,CoursePriceMax,
+            ErrorMessage = "Цената не може да е отрицателно число.Сумата е най-малко {2} лева.")]
+        [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
         [Required]
-        [Display(Name = "Program")]
+        [Display(Name = "Програма")]
         public string Program { get; set; } = string.Empty;
 
         [Required]
