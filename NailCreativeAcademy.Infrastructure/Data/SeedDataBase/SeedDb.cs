@@ -14,8 +14,8 @@
         public Trainer ThirdTrainer { get; set; }  
         public CourseType FirstType { get; set; }
         public CourseType SecondType { get; set; }
-        public Saloon Sallon1 { get; set; }
-        public Saloon Sallon2 { get; set; }
+        public Saloon Saloon1 { get; set; }
+        public Saloon Saloon2 { get; set; }
 
         public SeedDb()
         {
@@ -121,19 +121,21 @@
 
         private void SeedSaloons()
         {
-            Sallon1 = new Saloon()
+            Saloon1 = new Saloon()
             {
                 Id = 1,
+                Name = "Nail Creative Saloon",
                 Address = "Пазарджик, бул. \"България\" 2",
-                PhoneNumber = "0888 222 555",
+                PhoneNumber = "+359888222555",
                 ClientId = Client1.Id,
             };
 
-            Sallon2 = new Saloon()
+            Saloon2 = new Saloon()
             {
                 Id = 2,
+                Name ="Nail Creative-S Saloon",
                 Address = "София, пл. \"Света Неделя\" 5",
-                PhoneNumber = "0888 222 455",
+                PhoneNumber = "+359888333555",
                 ClientId = StudentUser1.Id,
             }; 
         }

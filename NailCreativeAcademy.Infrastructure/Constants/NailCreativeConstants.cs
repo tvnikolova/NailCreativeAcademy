@@ -43,7 +43,7 @@
 		public const int SaloonAddressMaxLength = 40;
 
         public const int SaloonNameMinLength = 2;
-        public const int SaloonNameMaxLength = 20;
+        public const int SaloonNameMaxLength = 30;
 
         //FeedBack
 

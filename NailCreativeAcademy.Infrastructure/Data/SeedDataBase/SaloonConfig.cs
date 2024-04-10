@@ -9,7 +9,7 @@
         {
             var data = new SeedDb();
 
-            builder.HasData(new Saloon[] { data.Sallon1, data.Sallon2});
+            builder.HasData(new Saloon[] { data.Saloon1, data.Saloon2});
         }
     }
 }
