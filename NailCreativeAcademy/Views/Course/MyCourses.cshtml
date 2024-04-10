@@ -9,7 +9,7 @@
     @foreach (var m in Model)
     {
         <div class="card" style="width: 22rem;">
-            <img src="~/image/Course/@m.Image" class="card-img-top" alt="" style="height : 16rem;width : 20rem;" />
+            <img src="~/image/Course/@(m.Image+".jpg")" class="card-img-top" alt="" style="height : 16rem;width : 20rem;" />
             <div class="card-body">
                 <h4 class="card-title mt-2">@m.Name</h4>
                 <h5 class="card-title mt-1">Начало: @m.StartDate</h5>

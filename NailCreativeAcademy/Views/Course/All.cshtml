@@ -14,7 +14,7 @@
     @foreach (var m in Model)
     {
         <div class="card" style="width: 22rem;">
-            <img src="~/image/Course/@m.Image" class="card-img-top text-center" alt="" style="height : 17rem;width : 20rem;" />
+            <img src="~/image/Course/@(m.Image+".jpg")" class="card-img-top text-center" alt="" style="height : 17rem;width : 20rem;" />
             <div class="card-body">
                 
                 <h4 class="card-title mt-2">@m.Name</h4>                
@@ -38,6 +38,7 @@
                 }
                 <a asp-controller="Course" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>
                <a asp-controller="Course" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахване на курса</a>
+
                 
             }
             else 
@@ -50,6 +51,12 @@
         </div>
        
        
+    }
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+
+        <a  asp-controller="Course" asp-action="Create" class="btn btn-dark mb-2 w-100 p-3 fw-bold">Добави курс</a>
+
     }
    
 </div>
