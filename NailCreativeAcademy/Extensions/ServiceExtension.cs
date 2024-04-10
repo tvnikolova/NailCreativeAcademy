@@ -6,6 +6,7 @@
     using NailCreativeAcademy.Core.Services;
     using NailCreativeAcademy.Infrastructure.Data;
     using NailCreativeAcademy.Infrastructure.Data.Common;
+    using NailCreativeAcademy.Infrastructure.Data.Models;
 
     public static class ServiceExtension
     {
@@ -33,7 +34,7 @@
 
         public static IServiceCollection AddApplicationApplicationIdentity(this IServiceCollection services, IConfiguration config)
         {
-            services.AddDefaultIdentity<IdentityUser>(options =>
+            services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.Password.RequireDigit = true;
