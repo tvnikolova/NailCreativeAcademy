@@ -15,8 +15,9 @@
     }
    @foreach(var m in Model)
     {        <div class="card" style= "width: 22rem;">
-            <img src="~/image/Saloons/@(m.Id+".jpg")" class="card-img-top text-center" alt="" style="height : 17rem;width : 20rem;"/>
+            <img src="~/image/Saloons/@(m.Name+".jpg")" class="card-img-top text-center" alt="" style="height : 17rem;width : 20rem;"/>
             <div class="card-body">
+                <h4 class="card-title text-center">@m.Name</h4>
                 <h5 class="card-title text-center">@m.Address</h5>
             </div>
             <form class="input-group-sm" asp-controller="Saloon" asp-action="Details" asp-route-id="@m.Id">

@@ -5,6 +5,9 @@
     using Models.Saloon;
     using Infrastructure.Data.Common;
     using Infrastructure.Data.Models;
+    using Microsoft.AspNetCore.Identity;
+    using System.Security.Claims;
+
     public class SaloonService : ISaloonService
     {
         private readonly IRepository repository;
@@ -19,6 +22,7 @@
                                                             .Select(s => new SaloonViewModel() 
                                                             {
                                                                 Id = s.Id,
+                                                                Name = s.Name,
                                                                 PhoneNumber = s.PhoneNumber,
                                                                 Address = s.Address,
                                                             })
@@ -31,9 +35,10 @@
 		{
 			Saloon newSaloonToAdd = new Saloon();
 
+            newSaloonToAdd.Name = newSaloon.Name;
             newSaloonToAdd.Address = newSaloon.Address;
 			newSaloonToAdd.PhoneNumber= newSaloon.PhoneNumber;
-            newSaloonToAdd.ClientId=string.Empty;
+            newSaloonToAdd.ClientId= newSaloon.ClientId;
 
             await repository.AddAsync(newSaloonToAdd);
             await repository.SaveChangesAsync();
@@ -50,6 +55,7 @@
             if (foundModel != null)
             {
                 foundModel.Id = saloonId;
+                foundModel.Name = model.Name;
                 foundModel.PhoneNumber = model.PhoneNumber;
                 foundModel.Address = model.Address;
 
@@ -57,13 +63,13 @@
             }
 
         }
-
         public async Task<SaloonFormModel> GetSaloonFormByIdAsync(int saloonId)
         {
             var foundSaloon = await repository.All<Saloon>()
                                             .Where(s => s.Id == saloonId)
                                             .Select(s => new SaloonFormModel()
                                             {
+                                                Name = s.Name,
                                                 PhoneNumber = s.PhoneNumber,
                                                 Address = s.Address
                                             })
@@ -81,7 +87,9 @@
 
             if (foundSaloon != null)
             {
+
                 saloonToDelete.Id = foundSaloon.Id;
+                saloonToDelete.Name = foundSaloon.Name;
                 saloonToDelete.PhoneNumber = foundSaloon.PhoneNumber;
                 saloonToDelete.Address = foundSaloon.Address;
             }

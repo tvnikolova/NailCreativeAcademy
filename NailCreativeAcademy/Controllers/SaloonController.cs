@@ -4,6 +4,7 @@
     using Core.Models.Saloon;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.Security.Claims;
     using static Core.Constants.MessageConstants;
 
     [Authorize]
@@ -36,11 +37,12 @@
         [HttpPost]
         public async Task<IActionResult> Add(SaloonFormModel newSaloon)
         {
+
             if(!ModelState.IsValid)
             {
                 return View(newSaloon);
             }
-
+            string userId = User.GetUserId();
             var allSaloon = await saloonService.AllAsync();
 
             if(allSaloon != null && allSaloon.Any(s=>s.Address == newSaloon.Address))
@@ -51,6 +53,7 @@
 			{
 				return BadRequest();
 			}
+            newSaloon.ClientId = userId;
 
             await saloonService.AddAsync(newSaloon);
 
