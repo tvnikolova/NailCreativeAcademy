@@ -12,9 +12,6 @@
             this.Courses = new List<CourseViewModel>();
         }
 
-        [Key]
-        public int Id { get; set; }
-      
         [Required]
         [StringLength(TrainerDescriptionMaxLength, MinimumLength = TrainerNameMinLength,
             ErrorMessage = "The fireld {0} is required.The name must be at least {2} symbols.")]

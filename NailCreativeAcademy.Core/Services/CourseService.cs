@@ -1,17 +1,12 @@
 ﻿namespace NailCreativeAcademy.Core.Services
 {
-    using System.Globalization;
-    using Microsoft.EntityFrameworkCore;
-    using System.Security.Claims;
-
     using Infrastructure.Data.Common;
-    using Infrastructure.Data.Models;    
+    using Infrastructure.Data.Models;
+    using Microsoft.EntityFrameworkCore;
     using Models.Course;
-    using Contracts.Course;
-    
-    
+    using Core.Contracts;
+    using System.Globalization;
     using static Infrastructure.Constants.NailCreativeConstants;
-    using Microsoft.AspNetCore.Identity;
 
     public class CourseService : ICourseService
     {

@@ -1,12 +1,10 @@
 ﻿namespace NailCreativeAcademy.Core.Services
 {
-    using Microsoft.EntityFrameworkCore;
     using Contracts;
-    using Models.Trainer;
     using Infrastructure.Data.Common;
     using Infrastructure.Data.Models;
-    using NailCreativeAcademy.Core.Models.Course;
-    using System.Globalization;
+    using Microsoft.EntityFrameworkCore;
+    using Models.Trainer;
 
     public class TrainerService : ITrainerService
     {
@@ -20,7 +18,6 @@
         {
             Trainer newTrainer = new Trainer()
             {
-                Id = trainer.Id,
                 Name = trainer.Name,
                 About = trainer.About,
             };
@@ -62,7 +59,7 @@
 
             var trainer = await repository.AllReadOnly<Trainer>()
             .Where(t => t.Name == trainerName)
-                .Select(t => new TrainerFormModel()
+                .Select(t => new TrainerViewModel()
                 {
                     Id = t.Id,
                     Name = t.Name,
@@ -99,7 +96,6 @@
                                                  .Where(t => t.Id == trainerId)
                                                  .Select (t => new TrainerFormModel()
                                                  {
-                                                     Id= t.Id,
                                                      Name = t.Name,
                                                      About = t.About
                                                  })

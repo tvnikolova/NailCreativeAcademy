@@ -1,4 +1,4 @@
-﻿namespace NailCreativeAcademy.Core.Contracts.Course
+﻿namespace NailCreativeAcademy.Core.Contracts
 {
     using Models.Course;
     using NailCreativeAcademy.Infrastructure.Data.Models;

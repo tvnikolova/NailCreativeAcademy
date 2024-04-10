@@ -8,5 +8,7 @@
         public const string CourseNotExist = "Курсът {0} не съществува!";
         public const string CourseHasEnrolledStudent = "Не може да изтриете курса - има записан/и студент/и!";
         public const string TrinerNameExists = "Обучител с посоченото име вече съществува!";
-    }
+        public const string SaloonAddresExists = "Салон с такъв адрес съществува!";
+		public const string SaloonPhoneNumberExists = "Салон с такъв адрес съществува!";
+	}
 }

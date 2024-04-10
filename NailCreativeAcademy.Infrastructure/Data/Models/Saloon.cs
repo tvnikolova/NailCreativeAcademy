@@ -13,6 +13,11 @@
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(SaloonNameMaxLength)]
+        [Comment("Saloon's name")]
+        public string Name { get; set; } = string.Empty;
+
+        [Required]
         [MaxLength(SaloonAddressMaxLength)]
         [Comment("Saloon's address")]
         public string Address { get; set; } = string.Empty;

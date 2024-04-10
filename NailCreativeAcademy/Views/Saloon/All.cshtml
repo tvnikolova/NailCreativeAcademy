@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SaloonViewModel>
+
+@{
+    ViewData["Title"] = "Салони";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+<hr />
+
+<div class="row row-cols-1 row-cols-md-2">
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        <a asp-controller="Saloon" asp-action="Add" class="btn btn-success mb-2 w-100 p-3 fw-bold">Добави салон</a>
+
+    }
+   @foreach(var m in Model)
+    {        <div class="card" style= "width: 22rem;">
+            <img src="~/image/Saloons/@(m.Id+".jpg")" class="card-img-top text-center" alt="" style="height : 17rem;width : 20rem;"/>
+            <div class="card-body">
+                <h5 class="card-title text-center">@m.Address</h5>
+            </div>
+            <form class="input-group-sm" asp-controller="Saloon" asp-action="Details" asp-route-id="@m.Id">
+                <input type="submit" value="Свържи се с нас" class="fs-6 btn btn-dark mb-2 w-100 p-3 fw-bold" />
+            </form>
+            @if(User?.Identity?.IsAuthenticated??false)
+            {
+                <a asp-controller="Saloon" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редактиране</a>
+                <a asp-controller="Saloon" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>
+            }
+          
+        </div>
+    }
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

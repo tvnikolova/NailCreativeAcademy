@@ -133,7 +133,7 @@
             {
                 Id = 2,
                 Address = "София, пл. \"Света Неделя\" 5",
-                PhoneNumber = "0888 222 555",
+                PhoneNumber = "0888 222 455",
                 ClientId = StudentUser1.Id,
             }; 
         }

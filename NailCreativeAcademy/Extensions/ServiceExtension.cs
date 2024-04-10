@@ -2,7 +2,6 @@
 {
     using AspNetCore.Identity;
     using EntityFrameworkCore;
-    using NailCreativeAcademy.Core.Contracts.Course;
     using NailCreativeAcademy.Core.Contracts;
     using NailCreativeAcademy.Core.Services;
     using NailCreativeAcademy.Infrastructure.Data;
@@ -14,7 +13,7 @@
         {
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ITrainerService, TrainerService>();
-
+            services.AddScoped<ISaloonService, SaloonService>();
             return services;
         }
 

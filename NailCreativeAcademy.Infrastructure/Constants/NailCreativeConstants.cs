@@ -42,7 +42,10 @@
 		public const int SaloonAddressMinLength = 10;
 		public const int SaloonAddressMaxLength = 40;
 
-       //FeedBack
+        public const int SaloonNameMinLength = 2;
+        public const int SaloonNameMaxLength = 20;
+
+        //FeedBack
 
         public const int FeedbackCommentMinLength = 5;
         public const int FeedbackCommentMaxLength = 500;

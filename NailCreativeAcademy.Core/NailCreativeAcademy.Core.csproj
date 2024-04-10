@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\Saloon\DeleteSaloonModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NailCreativeAcademy.Infrastructure\NailCreativeAcademy.Infrastructure.csproj" />
   </ItemGroup>
 
