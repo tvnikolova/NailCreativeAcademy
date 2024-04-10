@@ -1,17 +1,13 @@
 ﻿namespace NailCreativeAcademy.Controllers
 {
+    using Core.Models.Course;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Core.Contracts.Course;
-    using Core.Models.Course;
-    using NailCreativeAcademy.Core.Contracts;
-    using static Infrastructure.Constants.NailCreativeConstants;
-    using static Core.Constants.MessageConstants;
+    using Core.Contracts;
     using System.Globalization;
     using System.Security.Claims;
-
-    using NailCreativeAcademy.Core.Services;
-    using NailCreativeAcademy.Infrastructure.Data.Models;
+    using static Core.Constants.MessageConstants;
+    using static Infrastructure.Constants.NailCreativeConstants;
 
     [Authorize]
     public class CourseController : Controller
