@@ -10,7 +10,7 @@
        [ForeignKey(nameof(Student))]
        [Comment("Enrolled student's identifier")]
        public string StudentId { get; set; } = string.Empty;
-       public virtual IdentityUser Student { get; set; } = null!;
+       public virtual ApplicationUser Student { get; set; } = null!;
 
        [Required]
        [ForeignKey(nameof(Course))]

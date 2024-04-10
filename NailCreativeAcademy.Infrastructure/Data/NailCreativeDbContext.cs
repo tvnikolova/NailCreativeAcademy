@@ -6,7 +6,7 @@
     using Models;
     using SeedDataBase;
 
-    public class NailCreativeDbContext : IdentityDbContext
+    public class NailCreativeDbContext : IdentityDbContext<ApplicationUser>
     {
 
         public NailCreativeDbContext(DbContextOptions<NailCreativeDbContext> options)

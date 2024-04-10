@@ -5,10 +5,10 @@
 
     public class SeedDb
     {
-        public IdentityUser AdminUser { get; set; }
-        public IdentityUser StudentUser1 { get; set; }
-        public IdentityUser StudentUser2 { get; set; }
-        public IdentityUser Client1{ get; set; }
+        public ApplicationUser AdminUser { get; set; }
+        public ApplicationUser StudentUser1 { get; set; }
+        public ApplicationUser StudentUser2 { get; set; }
+        public ApplicationUser Client1 { get; set; }
         public Trainer FirstTrainer { get; set; }
         public Trainer SecondTrainer { get; set; }
         public Trainer ThirdTrainer { get; set; }  
@@ -26,9 +26,9 @@
         }
         private void SeedUsers()
         {
-            var hasher = new PasswordHasher<IdentityUser>();
+            var hasher = new PasswordHasher<ApplicationUser>();
 
-            AdminUser = new IdentityUser()
+            AdminUser = new ApplicationUser()
             {
                 Id = "b8b63dd7e8f14a01b3d4ef4bb901b2e4",
                 UserName = "t_nikolova1985@abv.bg",
@@ -39,7 +39,7 @@
                 AdminUser.PasswordHash =
                 hasher.HashPassword(AdminUser, "tn123456");
 
-            StudentUser1 = new IdentityUser()
+            StudentUser1 = new ApplicationUser()
             {
                 Id = "68a865ce-5b33-4275-a460-dc00683172d2",
                 UserName = "student1@abv.bg",
@@ -50,7 +50,7 @@
               StudentUser1.PasswordHash =
                     hasher.HashPassword(StudentUser1, "st1123456");
 
-            StudentUser2 = new IdentityUser()
+            StudentUser2 = new ApplicationUser()
             {
                 Id = "714e73f4716d4cf9946d494ed0d72cf7",
                 UserName = "student2@abv.bg",
@@ -61,7 +61,7 @@
              StudentUser2.PasswordHash =
                   hasher.HashPassword(StudentUser2, "st2654321");
 
-            Client1 = new IdentityUser()
+            Client1 = new ApplicationUser()
             {
                 Id = "cf756f58ca9146f2889a54a32cde2dfc",
                 UserName = "client1@abv.bg",

@@ -50,5 +50,13 @@
         public const int FeedbackCommentMinLength = 5;
         public const int FeedbackCommentMaxLength = 500;
 
+        //ApplicationUser
+
+        public const int UserFirstNameMinLength = 2;
+        public const int UserFirstNameMaxLength = 15;
+
+        public const int UserLastNameMinLength = 2;
+        public const int UserLastNameMaxLength = 15;
+
     }
 }

@@ -31,7 +31,7 @@
         [ForeignKey(nameof(Client))]
         [Comment("Client identifier")]
         public string ClientId { get; set; } = string.Empty;
-        public virtual IdentityUser Client { get; set; } = null!;
+        public virtual ApplicationUser Client { get; set; } = null!;
 
     }
 
