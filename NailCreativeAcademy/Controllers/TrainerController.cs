@@ -1,12 +1,14 @@
 ﻿namespace NailCreativeAcademy.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Core.Contracts.Course;
+
     using Core.Contracts;
-    using NailCreativeAcademy.Core.Models.Course;
-    using NailCreativeAcademy.Core.Models.Trainer;
+    
+    using Core.Models.Trainer;
     using static Core.Constants.MessageConstants;
 
+    [Authorize]
     public class TrainerController : Controller
     {
         private readonly ITrainerService trainerService;
@@ -20,6 +22,7 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> All()
         {
             IEnumerable<TrainerViewModel> model = await trainerService.AllAsync();
@@ -98,7 +101,7 @@
         {
             if (!await trainerService.TrainerExistByIdAsync(id))
             {
-                return BadRequest(ModelState);
+                return BadRequest();
             }
 
             await trainerService.DeleteAsync(id);
