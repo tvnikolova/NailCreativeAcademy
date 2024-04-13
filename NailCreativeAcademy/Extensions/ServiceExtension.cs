@@ -1,6 +1,5 @@
 ﻿namespace Microsoft.Extensions.DependencyInjection
 {
-    using AspNetCore.Identity;
     using EntityFrameworkCore;
     using NailCreativeAcademy.Core.Contracts;
     using NailCreativeAcademy.Core.Services;
@@ -15,6 +14,7 @@
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<ITrainerService, TrainerService>();
             services.AddScoped<ISaloonService, SaloonService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
             return services;
         }
 
