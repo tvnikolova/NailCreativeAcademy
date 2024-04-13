@@ -20,4 +20,8 @@
     <ProjectReference Include="..\NailCreativeAcademy.Core\NailCreativeAcademy.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Attribute\" />
+  </ItemGroup>
+
 </Project>
