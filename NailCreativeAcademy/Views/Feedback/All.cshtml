@@ -1,0 +1,37 @@
+﻿@model ICollection<FeedbackViewModel>
+
+@{
+	ViewBag.Title = "Вашето мнение е важно за нас!";
+    
+}
+
+<h2 class="text-black align-content-center">@ViewBag.Title</h2>
+</hr>
+<div class="text-center row">
+   
+    @foreach (var m in Model)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@m.ClientName</h5>
+                <p class="card-text">@m.Review</p>
+            </div>
+        </div>
+        @if(User?.Identity?.IsAuthenticated??false)
+        {
+            if (@m.ClientId == User.GetUserId())
+            {
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-black me-md-2" type="button" onclick="location.href='@Url.Action("Edit", "Feedback",new {id=m.Id})'">Редактиране</button>
+                    <button class="btn btn-black me-md-2" type="button" onclick="location.href='@Url.Action("Delete", "Feedback",new {id=m.Id})'">Изтрий</button>
+                </div>
+            }
+            
+
+        }
+    }
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

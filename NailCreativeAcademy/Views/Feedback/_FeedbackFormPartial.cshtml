@@ -1,0 +1,20 @@
+﻿@model FeedbackFormModel
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post"> 
+            <div class="form-group">
+                <label asp-for="@Model.ClientId" class="control-label"></label>
+                <input asp-for="@Model.ClientId" readonly class="form-control" value="@User.GetUserId()" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Review" class="control-label"></label>
+                <textarea class="form-control" asp-for="@Model.Review" class="form-control" /></textarea>
+                <span asp-validation-for="@Model.Review" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <input type="submit" value="Сподели"  class="btn btn-black" />
+                </div>
+            </form>       
+    </div>
+</div>

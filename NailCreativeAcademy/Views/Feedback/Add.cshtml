@@ -1,0 +1,10 @@
+﻿@model FeedbackFormModel
+@{
+    ViewBag.Title = "Твоят коментар";
+}
+
+<partial name="_FeedbackFormPartial" model="@Model" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
