@@ -6,6 +6,8 @@
     using Core.Models.Feedback;
     
     using static Core.Constants.MessageConstants;
+    using Microsoft.AspNetCore.Authorization;
+
     public class FeedbackController : BaseController
     {
         private readonly IFeedbackService feedbackService;
@@ -15,6 +17,8 @@
             this.feedbackService = _feedbackService;
             this.courseService = _courseService;
         }
+
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> All(int id)
         {
