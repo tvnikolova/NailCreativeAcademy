@@ -1,6 +1,7 @@
 ﻿namespace NailCreativeAcademy.Core.Contracts
 {
     using Models.Saloon;
+    using NailCreativeAcademy.Core.Models.Course;
 
     public interface ISaloonService
     {
@@ -9,6 +10,7 @@
         Task EditAsync(SaloonFormModel model, int saloonId);
         Task<SaloonFormModel> GetSaloonFormByIdAsync(int saloonId);
         Task DeleteAsync(int saloonId);
-        Task<SaloonViewModel> GetSaloonToDeleteAsync(int saloonId);
+        Task<SaloonViewModel> GetSaloonViewModelAsync(int saloonId);
+        Task<SaloonViewModel> DetailsAsync(int id);
     }
 }

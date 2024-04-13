@@ -16,10 +16,9 @@
         Task <IEnumerable<MyCourseModel>> MyCoursesAsync(string userId);
         Task<string> JoinedCourse(string userId, int courseId);
         Task <MyCourseModel> GetMyCourseByIdAsync(int id);
-
         Task<CourseFormModel> GetCourseToEditByIdAsync(int id);
 
-
+        Task<string> GetCourseNameByIdAsync(int courseId);
         Task EditAsync(CourseFormModel model, int id, int trainerId);
         Task DeleteAsync(int courseId);
 
