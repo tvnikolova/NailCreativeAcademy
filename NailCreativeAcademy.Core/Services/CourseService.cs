@@ -84,6 +84,7 @@
                 .AnyAsync(c => c.Id == id);
         }
 
+        
         public async Task<CourseDetailsViewModel> DetailsAsync(int id)
         {
             CourseDetailsViewModel courses = await repository.AllReadOnly<Course>()
@@ -277,6 +278,16 @@
             int countOfEnrolledStudents =  enrolledStudents.Count();
 
             return countOfEnrolledStudents;
+        }
+
+        public async Task<string> GetCourseNameByIdAsync(int courseId)
+        {
+            var courseName = await repository.AllReadOnly<Course>()
+                                             .Where(c => c.Id == courseId)
+                                             .FirstAsync();
+           
+            return courseName.Name;
+            
         }
     }
 }

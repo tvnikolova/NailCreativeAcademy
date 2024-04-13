@@ -7,6 +7,7 @@
     using Infrastructure.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using System.Security.Claims;
+    using NailCreativeAcademy.Core.Models.Course;
 
     public class SaloonService : ISaloonService
     {
@@ -78,26 +79,24 @@
             return foundSaloon;
         }
 
-        public async Task<SaloonViewModel> GetSaloonToDeleteAsync(int saloonId)
+        public async Task<SaloonViewModel> GetSaloonViewModelAsync(int saloonId)
         {
             var foundSaloon = await repository.All<Saloon>()
                                                .Where(s => s.Id == saloonId)
+                                               .Select(s=>new SaloonViewModel()
+                                               {
+                                                   Id = s.Id,
+                                                   Name = s.Name,
+                                                   PhoneNumber = s.PhoneNumber,
+                                                   Address = s.Address
+                                               })
                                                .FirstAsync();
-            SaloonViewModel saloonToDelete = new SaloonViewModel();
-
-            if (foundSaloon != null)
-            {
-
-                saloonToDelete.Id = foundSaloon.Id;
-                saloonToDelete.Name = foundSaloon.Name;
-                saloonToDelete.PhoneNumber = foundSaloon.PhoneNumber;
-                saloonToDelete.Address = foundSaloon.Address;
-            }
-            return saloonToDelete;
+          
+            return foundSaloon;
         }
         public async Task DeleteAsync(int saloonId)
         {
-            var saloonToDelete = await GetSaloonToDeleteAsync(saloonId);
+            var saloonToDelete = await GetSaloonViewModelAsync(saloonId);
 
             if(saloonToDelete != null)
             {
@@ -106,5 +105,24 @@
             }
         }
 
-	}
+        public async Task<SaloonViewModel> DetailsAsync(int id)
+        {
+           
+                var saloons = await repository.AllReadOnly<Saloon>()
+                                                .Where(c => c.Id == id)
+                                                .Select(c => new SaloonViewModel()
+                                                {
+                                                    Id = c.Id,
+                                                    Name = c.Name,
+                                                    PhoneNumber = c.PhoneNumber,
+                                                    Address = c.Address
+                                                    
+
+                                                })
+                                                .FirstAsync();
+
+                return saloons;
+            
+        }
+    }
 }

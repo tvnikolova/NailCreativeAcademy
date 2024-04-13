@@ -16,12 +16,7 @@
         [Comment("Content of the review")]
         public string Review { get; set; } = string.Empty;
 
-        [Required]
-        [ForeignKey(nameof(FeedbackBoard))]
-        [Comment("FeedbackBoard identifier")]
-        public int FeedbackBoardId { get; set; }
-        public virtual FeedbackBoard FeedbackBoard { get; set; } = null!;
-
+        
         [Required]
         [ForeignKey(nameof(Course))]
         [Comment("Identifier of the course to which the feedback is.")]
