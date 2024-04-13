@@ -22,7 +22,7 @@
                 <hr />
                 <h3 class="card-title align-content-sm-center mt-1" >@m.Price лв.</h3>
             </div>
-            <a asp-controller="Course" asp-action="Details" asp-route-id="@m.Id" class="btn btn-dark mb-2 w-100 p-3 fw-bold">Информация за курса</a>
+            <a asp-controller="Course" asp-action="Details" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Информация за курса</a>
             <a asp-controller="Feedback" asp-action="All" asp-route-id="@m.Id" class="btn btn-outline-dark mb-2 w-100 p-3 fw-bold">Отзиви</a>
             @if (User?.Identity?.IsAuthenticated ?? false)
             {
