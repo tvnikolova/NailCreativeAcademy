@@ -4,11 +4,11 @@
     using Core.Models.Saloon;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using NailCreativeAcademy.Core.Services;
     using System.Security.Claims;
     using static Core.Constants.MessageConstants;
 
-    [Authorize]
-    public class SaloonController : Controller
+    public class SaloonController : BaseController
     {
         private readonly ISaloonService saloonService;
         public SaloonController(ISaloonService _saloonService)
@@ -87,10 +87,19 @@
             return RedirectToAction(nameof(All));
         }
 
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = await saloonService.DetailsAsync(id);
+
+            return View(model);
+        }
+
         [HttpGet]
        public async Task<IActionResult> Delete(int id)
         {
-            var saloonToDelete = await saloonService.GetSaloonToDeleteAsync(id);
+            var saloonToDelete = await saloonService.GetSaloonViewModelAsync(id);
 
             if(saloonToDelete == null)
             {

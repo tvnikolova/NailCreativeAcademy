@@ -8,8 +8,7 @@
     using Core.Models.Trainer;
     using static Core.Constants.MessageConstants;
 
-    [Authorize]
-    public class TrainerController : Controller
+    public class TrainerController : BaseController
     {
         private readonly ITrainerService trainerService;
         private readonly ICourseService courseService;

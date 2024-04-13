@@ -9,8 +9,7 @@
     using static Core.Constants.MessageConstants;
     using static Infrastructure.Constants.NailCreativeConstants;
 
-    [Authorize]
-    public class CourseController : Controller
+    public class CourseController : BaseController
     {
 
 
