@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject ICourseService courseService
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,10 +34,12 @@
                         </li>
                         @if (this.User?.Identity?.IsAuthenticated ?? false)
                         {
-                            
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Course" asp-action="MyCourses">Моите курсове</a>
-                            </li>
+                            if (await courseService.StudentHasEnrolledCourse(User.GetUserId()))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Course" asp-action="MyCourses">Моите курсове</a>
+                                </li>
+                            }
                         }
                     </ul>
                     <partial name="_LoginPartial" />
