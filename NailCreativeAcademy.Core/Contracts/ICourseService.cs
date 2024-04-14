@@ -24,6 +24,7 @@
 
         Task <DeleteCourseViewModel> GetCourseToDeleteAsync(int courseId);
         Task<EnrolledStudent> GetMyEnrolledCourseById(string userId, int courseId);
+        Task<bool> StudentHasEnrolledCourse(string userId);
         Task RemoveMyCourse(int courseId, string userId);
         Task<int> CountOfEnrolledStudents(int courseId);
     }

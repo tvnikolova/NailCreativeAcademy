@@ -61,6 +61,29 @@
             return newCourse.Id;
         }
 
+        public async Task EditAsync(CourseFormModel model, int id, int trainerId)
+        {
+            var courseToEdit = await repository.All<Course>()
+                                                .Where(c => c.Id == id)
+                                                .FirstOrDefaultAsync();
+            var courseTypes = await GetCourseTypesAsync();
+
+            if (courseToEdit != null)
+            {
+                courseToEdit.Name = model.Name;
+                courseToEdit.Program = model.Program;
+                courseToEdit.Duration = model.Duration;
+                courseToEdit.Image = model.Image;
+                courseToEdit.Price = model.Price;
+                courseToEdit.StartDate = DateTime.ParseExact(model.StartDate, DateOProjectString, CultureInfo.InvariantCulture);
+                courseToEdit.EndDate = DateTime.ParseExact(model.EndDate, DateOProjectString, CultureInfo.InvariantCulture);
+                courseToEdit.TrainerId = trainerId;
+
+                await repository.SaveChangesAsync();
+            }
+
+        }
+
         public async Task<IEnumerable<CourseTypeViewModel>> GetCourseTypesAsync()
         {
             IEnumerable<CourseTypeViewModel> allTypes = await repository.AllReadOnly<CourseType>()
@@ -208,31 +231,7 @@
 
             return courses;
         }
-
-        public async Task EditAsync(CourseFormModel model, int id, int trainerId)
-        {
-            var courseToEdit = await repository.All<Course>()
-                                                .Where(c => c.Id == id)
-                                                .FirstOrDefaultAsync();
-            var courseTypes = await GetCourseTypesAsync();
-
-            if (courseToEdit != null)
-            {
-                courseToEdit.Name = model.Name;
-                courseToEdit.Program = model.Program;
-                courseToEdit.Duration = model.Duration;
-                courseToEdit.Image = model.Image;
-                courseToEdit.Price = model.Price;
-                courseToEdit.StartDate = DateTime.ParseExact(model.StartDate, DateOProjectString, CultureInfo.InvariantCulture);
-                courseToEdit.EndDate = DateTime.ParseExact(model.EndDate, DateOProjectString, CultureInfo.InvariantCulture);
-                courseToEdit.TrainerId = trainerId;
                 
-                await repository.SaveChangesAsync();
-            }
-           
-        }
-
-        
         public async Task<DeleteCourseViewModel> GetCourseToDeleteAsync(int courseId)
         {
             var foundedCourse = await repository.AllReadOnly<Course>()
@@ -288,6 +287,13 @@
            
             return courseName.Name;
             
+        }
+
+        public async Task<bool> StudentHasEnrolledCourse(string userId)
+        {
+            return await repository.AllReadOnly<EnrolledStudent>()
+                                                .Where(c => c.StudentId == userId)
+                                                .AnyAsync();
         }
     }
 }
