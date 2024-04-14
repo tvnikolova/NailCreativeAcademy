@@ -1,6 +1,7 @@
 ﻿namespace Microsoft.Extensions.DependencyInjection
 {
     using EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
     using NailCreativeAcademy.Core.Contracts;
     using NailCreativeAcademy.Core.Services;
     using NailCreativeAcademy.Infrastructure.Data;
@@ -42,6 +43,7 @@
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
             })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<NailCreativeDbContext>();
 
             return services;
