@@ -33,6 +33,7 @@
 
         [Required]
         [Range(typeof(decimal),CoursePriceMin,CoursePriceMax,
+            ConvertValueInInvariantCulture = true,
             ErrorMessage = "Цената не може да е отрицателно число.Сумата е най-малко {2} лева.")]
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
