@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using static Infrastructure.Constants.NailCreativeConstants;
+    using static Core.Constants.MessageConstants;
     public class TrainerFormModel
     {
 
@@ -12,12 +13,12 @@
             this.Courses = new List<CourseViewModel>();
         }
 
-        [Required]
+        [Required(ErrorMessage = RequiredMessage)]
         [StringLength(TrainerDescriptionMaxLength, MinimumLength = TrainerNameMinLength,
             ErrorMessage = "The fireld {0} is required.The name must be at least {2} symbols.")]
         public string Name { get; set; } = string.Empty;
 
-        [Required]       
+        [Required(ErrorMessage = RequiredMessage)]
         [StringLength(TrainerDescriptionMaxLength, MinimumLength = TrainerDescriptionMinLength,
             ErrorMessage = "The fireld {0} is required.The name must be at least {2} and maximum {1} symbols.")]
         public string About { get; set; } = string.Empty;

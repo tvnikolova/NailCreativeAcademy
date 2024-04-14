@@ -6,18 +6,18 @@
 
     public class SaloonFormModel
     {
-        [Required]
+        [Required(ErrorMessage = RequiredMessage)]
         [StringLength(SaloonNameMaxLength, MinimumLength = SaloonAddressMinLength, ErrorMessage = LengthStringRequired)]
         public string Name {  get; set; } = string.Empty;
-        [Required]
+        [Required(ErrorMessage = RequiredMessage)]
         [StringLength(SaloonAddressMaxLength, MinimumLength = SaloonAddressMinLength, ErrorMessage = LengthStringRequired)]
         public string Address { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = RequiredMessage)]
         [StringLength(PhoneNumberLength)]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        [Required]
+        [Required(ErrorMessage = RequiredMessage)]
         public string ClientId = string.Empty;
 
     }

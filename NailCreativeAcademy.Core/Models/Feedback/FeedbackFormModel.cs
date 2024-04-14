@@ -6,19 +6,19 @@
 
     public class FeedbackFormModel
 	{
-		
-		[Required]
-		[StringLength(FeedbackCommentMaxLength, MinimumLength = FeedbackCommentMinLength,
+
+        [Required(ErrorMessage = RequiredMessage)]
+        [StringLength(FeedbackCommentMaxLength, MinimumLength = FeedbackCommentMinLength,
 			ErrorMessage = LengthStringRequired)]
 		public string Review { get; set; } = string.Empty;
 
-		[Required]		
-		public int CourseId { get; set; }
-		
-		[Required]
-		public string ClientId { get; set; } = string.Empty;
+        [Required(ErrorMessage = RequiredMessage)]
+        public int CourseId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredMessage)]
+        public string ClientId { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = RequiredMessage)]
         public int FeedbackBoardId { get; set; } 
     }
 }
