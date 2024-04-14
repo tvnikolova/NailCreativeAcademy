@@ -28,8 +28,8 @@
         public const int CourseMinDuration = 5;
 		public const int CourseMaxDuration = 15;
 
-        public const string CoursePriceMin = "0.00";
-        public const string CoursePriceMax = "2500.00";
+        public const string CoursePriceMin = "0";
+        public const string CoursePriceMax = "2500";
 
 
         //Course type constants
