@@ -41,4 +41,6 @@ app.MapDefaultControllerRoute();
   
 app.MapRazorPages();
 
+await app.CreateAdminRoleAsync();
+
 await app.RunAsync();

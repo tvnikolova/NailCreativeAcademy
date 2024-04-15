@@ -8,7 +8,7 @@
 <hr />
 
 <div class="text-center row">
-    @if (User?.Identity?.IsAuthenticated ?? false)
+    @if (this.User.Identity.IsAuthenticated && User.IsAdmin())
     {
         <a asp-controller="Trainer" asp-action="Create" class="btn btn-success mb-2 w-100 p-3 fw-bold">Добави обучител</a>
 
@@ -21,8 +21,8 @@
                 <h3 class="card-title mt-2">@m.Name</h3>
                 <h5 class="card-title mt-1">@m.About</h5>
                 <hr />
-            </div>           
-            @if (User?.Identity?.IsAuthenticated ?? false)
+            </div>
+            @if (this.User.Identity.IsAuthenticated && User.IsAdmin())
             {
                 
                 <a asp-controller="Trainer" asp-action="Edit" asp-route-id ="@m.Id"class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редактиране</a>

@@ -61,6 +61,10 @@
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            if(!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             CourseFormModel newCourse = new CourseFormModel();
 
             newCourse.CourseTypes = await courseService.GetCourseTypesAsync();
@@ -71,7 +75,10 @@
         [HttpPost]
         public async Task<IActionResult> Create(CourseFormModel courseModel, int trainerId)
         {
-
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             DateTime startDate = DateTime.Now;
             DateTime endDate = DateTime.Now;
             if (!DateTime.TryParseExact(courseModel.StartDate, DateOProjectString, CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
@@ -137,7 +144,7 @@
         }
 
 
-        [HttpGet]       
+        [HttpPost]       
         public async Task<IActionResult> Leave(int id)
         {
              string userId = User.GetUserId();
@@ -152,6 +159,10 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             var foundedCourse = await courseService.GetCourseToEditByIdAsync(id);
             var courseTypes = await courseService.GetCourseTypesAsync();
 
@@ -167,6 +178,10 @@
         [HttpPost]
         public async Task<IActionResult> EditAsync(CourseFormModel course, int id, int trainerId)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             DateTime startDate = DateTime.Now;
            
             if (!DateTime.TryParseExact(course.StartDate, DateOProjectString, CultureInfo.InvariantCulture, DateTimeStyles.None, out startDate))
@@ -201,6 +216,10 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             var foundCourse = await courseService.CourseExistAsyncById(id);
 
             if (!foundCourse)
@@ -216,6 +235,10 @@
         [HttpPost]
         public async Task<IActionResult> ConfirmDelete (int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             var foundCourse = await courseService.GetCourseToDeleteAsync(id);
 
             if(foundCourse == null)

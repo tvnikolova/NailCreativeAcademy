@@ -17,7 +17,7 @@
                 <p class="card-text">@m.Review</p>
             </div>
         </div>
-        @if(User?.Identity?.IsAuthenticated??false)
+        @if (this.User.Identity.IsAuthenticated || User.IsAdmin())
         {
             if (@m.ClientId == User.GetUserId())
             {

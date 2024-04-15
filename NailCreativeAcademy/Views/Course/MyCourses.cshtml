@@ -16,11 +16,11 @@
                 <hr />
                 <h3 class="card-title align-content-sm-center mt-1">@m.Price лв.</h3>
             </div>
-            @if (User?.Identity?.IsAuthenticated ?? false)
+            @if (this.User.Identity.IsAuthenticated || User.IsAdmin())
             {
                 <a asp-controller="Course" asp-action="CourseProgram" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Програма на курса</a>
                 <a asp-controller="Feedback" asp-action="Add" asp-route-id="@m.Id" class="btn btn-outline-dark mb-2 w-100 p-3 fw-bold">Сподели своето мнение тук:</a>
-                <a asp-controller="Course" asp-action="Leave" asp-route-id="@m.Id" class="btn btn-dark mb-2 w-100 p-3 fw-bold">Отписване от курса</a>
+                <a asp-controller="Course" asp-action="Leave" asp-route-id="@m.Id" class="btn btn-secondary mb-2 w-100 p-3 fw-bold">Отписване от курса</a>
 
             }
         </div>

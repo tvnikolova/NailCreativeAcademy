@@ -7,6 +7,7 @@
     
     using Core.Models.Trainer;
     using static Core.Constants.MessageConstants;
+    using System.Security.Claims;
 
     public class TrainerController : BaseController
     {
@@ -33,6 +34,10 @@
         [HttpGet]
         public IActionResult Create()
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             var model = new TrainerFormModel();
              return View(model);
         
@@ -40,8 +45,12 @@
 
         [HttpPost]
         public async Task<IActionResult>Create(TrainerFormModel trainer)
-        { 
-          var foundedTrainer = await trainerService.TrainerExistByNameAsync(trainer.Name);
+        {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+            var foundedTrainer = await trainerService.TrainerExistByNameAsync(trainer.Name);
 
             if(foundedTrainer)
             {
@@ -60,6 +69,10 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             var foundedTrainer = await trainerService.GetTrainerFormByIdAsync(id);
            
             if (foundedTrainer == null)
@@ -75,6 +88,10 @@
         [HttpPost]
         public async Task<IActionResult> EditAsync(TrainerFormModel trainer, int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             var foundedTrainer = await trainerService.GetTrainerFormByIdAsync(id);
 
             if (foundedTrainer == null)
@@ -90,6 +107,10 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             TrainerViewModel foundTrainer = await trainerService.GetTrainerToDeleteAsync(id);
 
             return View(foundTrainer);
@@ -98,6 +119,10 @@
         [HttpPost]
         public async Task<IActionResult> ConfirmDelete(int id)
         {
+            if (!User.IsAdmin())
+            {
+                return Unauthorized();
+            }
             if (!await trainerService.TrainerExistByIdAsync(id))
             {
                 return BadRequest();

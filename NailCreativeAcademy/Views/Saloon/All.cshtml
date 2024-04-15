@@ -8,7 +8,7 @@
 <hr />
 
 <div class="row row-cols-1 row-cols-md-2">
-    @if (User?.Identity?.IsAuthenticated ?? false)
+    @if (this.User.Identity.IsAuthenticated && User.IsAdmin())
     {
         <a asp-controller="Saloon" asp-action="Add" class="btn btn-success mb-2 w-100 p-3 fw-bold">Добави салон</a>
 
@@ -21,7 +21,7 @@
                 <h5 class="card-title text-center">@m.Address</h5>
             </div>
             <a asp-controller="Saloon" asp-action="Details" asp-route-id="@m.Id" class="fs-6 btn btn-dark mb-2 w-100 p-3 fw-bold">Свържи се с нас</a>
-            @if(User?.Identity?.IsAuthenticated??false)
+            @if(this.User.Identity.IsAuthenticated && User.IsAdmin())
             {
                 <a asp-controller="Saloon" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редактиране</a>
                 <a asp-controller="Saloon" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахни</a>

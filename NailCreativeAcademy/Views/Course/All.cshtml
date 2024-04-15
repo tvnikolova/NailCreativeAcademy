@@ -37,8 +37,11 @@
                     <p class="text-danger mt-2">"Няма свободни места в курса! Очаквайте нова дата скоро!!"</p>
                     <a asp-action="All" class="btn btn-secondary">Назад</a>
                 }
-                <a asp-controller="Course" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>
-               <a asp-controller="Course" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахване на курса</a>
+                if(this.User.IsAdmin())
+                {
+                    <a asp-controller="Course" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Редакция</a>
+                    <a asp-controller="Course" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-danger mb-2 w-100 p-3 fw-bold">Премахване на курса</a>
+                }
                 
                 
             }
@@ -53,7 +56,7 @@
        
        
     }
-    @if (User?.Identity?.IsAuthenticated ?? false)
+    @if (this.User.Identity.IsAuthenticated && User.IsAdmin())
     {
 
         <a  asp-controller="Course" asp-action="Create" class="btn btn-outline-success mb-2 w-100 p-3 fw-bold">Добави курс</a>
