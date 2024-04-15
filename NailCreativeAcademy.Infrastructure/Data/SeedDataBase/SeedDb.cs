@@ -124,7 +124,7 @@
             Saloon1 = new Saloon()
             {
                 Id = 1,
-                Name = "Nail Creative Saloon",
+                Name = "Nail Creative",
                 Address = "Пазарджик, бул. \"България\" 2",
                 PhoneNumber = "+359888222555",
                 ClientId = Client1.Id,
@@ -133,7 +133,7 @@
             Saloon2 = new Saloon()
             {
                 Id = 2,
-                Name ="Nail Creative-S Saloon",
+                Name ="Nail Creative-S",
                 Address = "София, пл. \"Света Неделя\" 5",
                 PhoneNumber = "+359888333555",
                 ClientId = StudentUser1.Id,

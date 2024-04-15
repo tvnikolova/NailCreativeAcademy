@@ -20,8 +20,6 @@
         public DbSet<Trainer> Trainers { get; set; } = null!;
         public DbSet<Saloon> Saloons { get; set; } = null!;
         public DbSet<Feedback> Feedbacks { get; set; } = null!;
-        public DbSet<FeedbackBoard> FeedbacksBoards { get; set; } = null!;
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
