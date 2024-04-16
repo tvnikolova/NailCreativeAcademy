@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NailCreativeAcademy.Infrastructure.Data;
 
@@ -11,9 +12,10 @@ using NailCreativeAcademy.Infrastructure.Data;
 namespace NailCreativeAcademy.Infrastructure.Migrations
 {
     [DbContext(typeof(NailCreativeDbContext))]
-    partial class NailCreativeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240416080723_AddGalleryEntity")]
+    partial class AddGalleryEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

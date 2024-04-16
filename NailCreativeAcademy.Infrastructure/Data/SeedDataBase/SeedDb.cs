@@ -34,7 +34,9 @@
                 UserName = "t_nikolova1985@abv.bg",
                 NormalizedUserName = "T_NIKOLOVA1985@ABV.BG",
                 Email = "t_nikolova1985@abv.bg",
-                NormalizedEmail = "T_NIKOLOVA1985@ABV.BG"
+                NormalizedEmail = "T_NIKOLOVA1985@ABV.BG",
+                FirstName = "Таня",
+                LastName="Николова"
             };
                 AdminUser.PasswordHash =
                 hasher.HashPassword(AdminUser, "tn123456");
@@ -45,7 +47,9 @@
                 UserName = "student1@abv.bg",
                 NormalizedUserName = "STUDENT1@ABV.BG",
                 Email = "student1@abv.bg",
-                NormalizedEmail = "STUDENT1@ABV.BG"
+                NormalizedEmail = "STUDENT1@ABV.BG",
+                FirstName = "Атанас",
+                LastName = "Атанасов"
             };
               StudentUser1.PasswordHash =
                     hasher.HashPassword(StudentUser1, "st1123456");
@@ -56,7 +60,9 @@
                 UserName = "student2@abv.bg",
                 NormalizedUserName = "STUDENT2@ABV.BG",
                 Email = "student2@abv.bg",
-                NormalizedEmail = "STUDENT2@ABV.BG"
+                NormalizedEmail = "STUDENT2@ABV.BG",
+                FirstName = "Николай",
+                LastName = "Николов"
             };
              StudentUser2.PasswordHash =
                   hasher.HashPassword(StudentUser2, "st2654321");
@@ -67,7 +73,9 @@
                 UserName = "client1@abv.bg",
                 NormalizedUserName = "CLIENT1@ABV.BG",
                 Email = "client1@abv.bg",
-                NormalizedEmail = "CLIENT1@ABV.BG"
+                NormalizedEmail = "CLIENT1@ABV.BG",
+                FirstName = "Иван",
+                LastName = "Иванов"
             };
             Client1.PasswordHash =
                  hasher.HashPassword(Client1, "cl123456");
