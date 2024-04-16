@@ -20,8 +20,9 @@
             {
                 <a asp-controller="Course" asp-action="CourseProgram" asp-route-id="@m.Id" class="btn btn-warning mb-2 w-100 p-3 fw-bold">Програма на курса</a>
                 <a asp-controller="Feedback" asp-action="Add" asp-route-id="@m.Id" class="btn btn-outline-dark mb-2 w-100 p-3 fw-bold">Сподели своето мнение тук:</a>
-                <a asp-controller="Course" asp-action="Leave" asp-route-id="@m.Id" class="btn btn-secondary mb-2 w-100 p-3 fw-bold">Отписване от курса</a>
-
+                <form class="input-group-sm " asp-controller="Course" asp-action="Leave" asp-route-id="@m.Id">
+                    <input type="submit" value="Отписване от курса" class="fs-6 btn btn-secondary mb-3 w-100 p-3 fw-bold" />
+                </form>
             }
         </div>
     }
