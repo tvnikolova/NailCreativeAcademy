@@ -107,7 +107,6 @@
                 .AnyAsync(c => c.Id == id);
         }
 
-        
         public async Task<CourseDetailsViewModel> DetailsAsync(int id)
         {
             CourseDetailsViewModel courses = await repository.AllReadOnly<Course>()
@@ -209,8 +208,6 @@
                 await repository.SaveChangesAsync();
             }
 
-            
-
         }
 
         public async Task<CourseFormModel> GetCourseToEditByIdAsync(int id)
@@ -295,5 +292,6 @@
                                                 .Where(c => c.StudentId == userId)
                                                 .AnyAsync();
         }
+
     }
 }
