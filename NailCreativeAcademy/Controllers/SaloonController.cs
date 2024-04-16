@@ -4,9 +4,7 @@
     using Core.Models.Saloon;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using NailCreativeAcademy.Core.Services;
     using System.Security.Claims;
-    using static Core.Constants.MessageConstants;
 
     public class SaloonController : BaseController
     {
@@ -15,7 +13,6 @@
         {
             this.saloonService = _saloonService;
         }
-
 
         [AllowAnonymous]
         [HttpGet]
