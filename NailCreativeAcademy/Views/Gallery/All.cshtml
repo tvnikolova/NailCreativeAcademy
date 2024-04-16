@@ -1,0 +1,44 @@
+﻿@model IEnumerable<GalleryViewModel>
+@{
+    ViewBag.Title = "Галерия";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    
+        @foreach (var m in Model)
+        {
+            <div class="col-md-3 mt-1 mb-1">
+                <img src="~/gallery/@m.Name" style="height:17rem;width:20rem;" />
+            @if (this.User.Identity.IsAuthenticated && User.IsAdmin())
+            {
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-warning" type="button" onclick="location.href='@Url.Action("Delete", "Gallery",new {id=m.Id})'">Изтриване</button>
+                </div>
+            }            
+            </div>
+        }
+</div>
+@if (this.User.Identity.IsAuthenticated && User.IsAdmin())
+{
+   
+        <div>
+            @using (Html.BeginForm("Add", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="file" class="form-control" name="file" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <input type="submit" class="btn btn-warning" name="submit" value="Добави" />
+                    </div>
+                </div>
+            }
+        </div>
+    
+}
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

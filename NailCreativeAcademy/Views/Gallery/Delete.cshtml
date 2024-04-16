@@ -1,0 +1,22 @@
+﻿@model GalleryViewModel
+
+@{
+    ViewBag.Title = "Изтриване на изображение";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-footer">
+                <p class="text-danger mt-3">"Наистина ли искате да изтриете изображението?"</p>
+                <form asp-action="ConfirmDelete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger">Изтрий!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
