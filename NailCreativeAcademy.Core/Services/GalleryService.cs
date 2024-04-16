@@ -1,11 +1,10 @@
 ﻿namespace NailCreativeAcademy.Core.Services
 {
-    using Microsoft.EntityFrameworkCore;
     using Contracts;
-    using Models.Gallery;
     using Infrastructure.Data.Common;
     using Infrastructure.Data.Models;
-    using NailCreativeAcademy.Core.Models.Saloon;
+    using Microsoft.EntityFrameworkCore;
+    using Models.Gallery;
 
     public class GalleryService : IGalleryService
     {

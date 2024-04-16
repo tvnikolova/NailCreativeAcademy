@@ -1,13 +1,11 @@
 ﻿namespace NailCreativeAcademy.Core.Services
 {
     using Microsoft.EntityFrameworkCore;
+
     using Contracts;
-    using Models.Saloon;
     using Infrastructure.Data.Common;
-    using Infrastructure.Data.Models;
-    using Microsoft.AspNetCore.Identity;
-    using System.Security.Claims;
-    using NailCreativeAcademy.Core.Models.Course;
+    using Infrastructure.Data.Models;    
+    using Models.Saloon;
 
     public class SaloonService : ISaloonService
     {

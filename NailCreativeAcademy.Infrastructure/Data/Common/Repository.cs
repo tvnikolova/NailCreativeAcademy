@@ -1,7 +1,6 @@
 ﻿namespace NailCreativeAcademy.Infrastructure.Data.Common
 {
     using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public class Repository : IRepository

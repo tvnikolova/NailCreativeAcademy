@@ -1,7 +1,6 @@
 ﻿namespace NailCreativeAcademy.Core.Contracts
 {
     using Models.Saloon;
-    using NailCreativeAcademy.Core.Models.Course;
 
     public interface ISaloonService
     {

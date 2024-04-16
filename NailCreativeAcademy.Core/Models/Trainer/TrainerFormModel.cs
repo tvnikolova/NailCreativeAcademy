@@ -1,10 +1,12 @@
 ﻿namespace NailCreativeAcademy.Core.Models.Trainer
 {
-    using NailCreativeAcademy.Core.Models.Course;
+    
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Core.Models.Course;
     using static Infrastructure.Constants.NailCreativeConstants;
     using static Core.Constants.MessageConstants;
+    
     public class TrainerFormModel
     {
 

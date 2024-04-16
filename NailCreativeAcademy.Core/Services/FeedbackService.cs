@@ -1,14 +1,14 @@
 ﻿namespace NailCreativeAcademy.Core.Services
 {
-    using Contracts;
+    
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using Models.Feedback;
-    using NailCreativeAcademy.Core.Models.Course;
-    using NailCreativeAcademy.Infrastructure.Data.Common;
-    using NailCreativeAcademy.Infrastructure.Data.Models;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Threading.Tasks;
+    using Infrastructure.Data.Common;
+    using Infrastructure.Data.Models;
+    using Contracts;
+
 
     public class FeedbackService : IFeedbackService
     {

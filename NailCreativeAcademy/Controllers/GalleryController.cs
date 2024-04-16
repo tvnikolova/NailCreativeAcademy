@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using NailCreativeAcademy.Core.Contracts;
-using NailCreativeAcademy.Core.Models.Course;
-using NailCreativeAcademy.Core.Models.Gallery;
-using NailCreativeAcademy.Core.Models.Saloon;
-using NailCreativeAcademy.Core.Services;
-using System.Security.Claims;
-
-namespace NailCreativeAcademy.Controllers
+﻿namespace NailCreativeAcademy.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Core.Contracts;
+    using Core.Models.Gallery;
     public class GalleryController : BaseController
     {
         private readonly IGalleryService galleryService;

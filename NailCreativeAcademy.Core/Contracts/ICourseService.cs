@@ -1,7 +1,7 @@
 ﻿namespace NailCreativeAcademy.Core.Contracts
 {
     using Models.Course;
-    using NailCreativeAcademy.Infrastructure.Data.Models;
+    using Infrastructure.Data.Models;
 
     public interface ICourseService
     {

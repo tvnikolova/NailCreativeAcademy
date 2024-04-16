@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
     using static Constants.MessageConstants;
-    using static NailCreativeAcademy.Infrastructure.Constants.NailCreativeConstants;
+    using static Infrastructure.Constants.NailCreativeConstants;
 
     public class SaloonFormModel
     {

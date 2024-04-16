@@ -1,6 +1,5 @@
 ﻿namespace NailCreativeAcademy.Infrastructure.Data.SeedDataBase
 {
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
     using NailCreativeAcademy.Infrastructure.Data.Models;
