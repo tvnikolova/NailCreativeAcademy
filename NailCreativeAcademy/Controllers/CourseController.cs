@@ -147,8 +147,12 @@
         [HttpPost]       
         public async Task<IActionResult> Leave(int id)
         {
-             string userId = User.GetUserId();
-           
+            string userId = User.GetUserId();
+
+            if(!await courseService.MyCourseExists(userId,id))
+            {
+                return NotFound();
+            }
 
             await courseService.RemoveMyCourse(id, userId);
 
