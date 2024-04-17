@@ -26,5 +26,6 @@
         Task<bool> StudentHasEnrolledCourse(string userId);
         Task RemoveMyCourse(int courseId, string userId);
         Task<int> CountOfEnrolledStudents(int courseId);
+        Task<IEnumerable<CourseViewModel>> GetAllCourseWithEnrolledStudentsAsync();
     }
 }

@@ -30,7 +30,7 @@
         {
 
             IEnumerable<CourseViewModel> model = await courseService.All();
-
+           
             return View(model);
         }
 

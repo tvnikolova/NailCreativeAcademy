@@ -296,5 +296,24 @@
                                                 .Where(c => c.TrainerId == trainerId)
                                                 .AnyAsync();
         }
+
+        public async Task<IEnumerable<CourseViewModel>> GetAllCourseWithEnrolledStudentsAsync()
+        {
+            var allCourseWithStudents = await repository.AllReadOnly<Course>()
+                                                       .Include(c => c.EnrolledStudents)
+                                                       .Where(c => c.EnrolledStudents.Count() > 0)
+                                                       .Select( c => new CourseViewModel()
+                                                       {
+                                                           Id = c.Id,
+                                                           Name = c.Name,
+                                                           StartDate = c.StartDate.ToString(DateOProjectString),
+                                                           Details = c.Details,
+                                                           Image = c.Image,
+                                                           Duration = c.Duration,
+                                                           Price = c.Price,
+                                                           TrainerId = c.TrainerId,                                                       })                                                       
+                                                       .ToListAsync();
+            return allCourseWithStudents;
+        }
     }
 }
