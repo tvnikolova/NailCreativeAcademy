@@ -12,7 +12,7 @@
         public const string SaloonAddresExists = "Салон с такъв адрес съществува!";
 		public const string SaloonPhoneNumberExists = "Салон с такъв адрес съществува!";
         public const string HasEnrolledStudentinTrainerCourse = "В курсът {0} има саписан студент. Не можете да премахнете обучителя!";
-
-
+        public const string UserAddMessageSuccess = "UserAddMessageSuccess";
+        public const string UserAddMessageError = "UserAddMessageError";
     }
 }
