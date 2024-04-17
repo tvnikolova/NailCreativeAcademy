@@ -1,6 +1,6 @@
 ﻿namespace System.Security.Claims
 {
-    using static NailCreativeAcademy.Core.Constants.RoleConstants;
+    using static NailCreativeAcademy.Core.Constants.AdminConstants;
     public static class ClaimsPrincipalExtension
     {
         public static string GetUserId(this ClaimsPrincipal user)

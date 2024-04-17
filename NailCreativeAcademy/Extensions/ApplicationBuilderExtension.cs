@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Identity;
     using NailCreativeAcademy.Infrastructure.Data.Models;
-    using static NailCreativeAcademy.Core.Constants.RoleConstants;
+    using static NailCreativeAcademy.Core.Constants.AdminConstants;
 
     public static class ApplicationBuilderExtensions
     {
