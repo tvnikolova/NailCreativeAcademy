@@ -17,6 +17,7 @@
             services.AddScoped<ISaloonService, SaloonService>();
             services.AddScoped<IFeedbackService, FeedbackService>();
             services.AddScoped<IGalleryService, GalleryService>();
+            services.AddScoped<IUserService, UserService>();
             return services;
         }
 
