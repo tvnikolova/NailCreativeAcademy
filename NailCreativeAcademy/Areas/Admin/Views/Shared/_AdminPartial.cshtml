@@ -6,8 +6,7 @@
 
     if (SignInManager.IsSignedIn(User))
     {
-        ApplicationUser user = await UserManager.FindByIdAsync(User.GetUserId());
-        namesOfUser = $"{user.FirstName} {user.LastName}";
+        namesOfUser = User.FindFirstValue(NailCreativeAcademy.Infrastructure.Constants.ClaimConstants.UserFullNameClaim) ?? string.Empty;
     }
 }
 

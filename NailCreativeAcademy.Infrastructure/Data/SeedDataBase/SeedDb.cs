@@ -2,13 +2,19 @@
 {
     using Microsoft.AspNetCore.Identity;
     using Models;
+    using System.Security.Claims;
+    using static Constants.ClaimConstants;
 
     public class SeedDb
     {
         public ApplicationUser AdminUser { get; set; }
+        public IdentityUserClaim<string> AdminUserClaim { get; set; }
         public ApplicationUser StudentUser1 { get; set; }
+        public IdentityUserClaim<string> StudentUser1Claim { get; set; }
         public ApplicationUser StudentUser2 { get; set; }
+        public IdentityUserClaim<string> StudentUser2Claim { get; set; }
         public ApplicationUser Client1 { get; set; }
+        public IdentityUserClaim<string> Client1Claim { get; set; }
         public Trainer FirstTrainer { get; set; }
         public Trainer SecondTrainer { get; set; }
         public Trainer ThirdTrainer { get; set; }  
@@ -38,7 +44,15 @@
                 FirstName = "Таня",
                 LastName="Николова"
             };
-                AdminUser.PasswordHash =
+            AdminUserClaim = new IdentityUserClaim<string>()
+            {
+                Id = 1,
+                ClaimType = UserFullNameClaim,
+                ClaimValue = "Таня Николова",
+                UserId= "b8b63dd7e8f14a01b3d4ef4bb901b2e4"
+            };
+
+            AdminUser.PasswordHash =
                 hasher.HashPassword(AdminUser, "tn123456");
 
             StudentUser1 = new ApplicationUser()
@@ -50,6 +64,13 @@
                 NormalizedEmail = "STUDENT1@ABV.BG",
                 FirstName = "Атанас",
                 LastName = "Атанасов"
+            };
+            StudentUser1Claim = new IdentityUserClaim<string>()
+            {
+                Id = 2,
+                ClaimType = UserFullNameClaim,
+                ClaimValue = "Атанас Атанасов",
+                UserId = "68a865ce-5b33-4275-a460-dc00683172d2"
             };
               StudentUser1.PasswordHash =
                     hasher.HashPassword(StudentUser1, "st1123456");
@@ -64,7 +85,16 @@
                 FirstName = "Николай",
                 LastName = "Николов"
             };
-             StudentUser2.PasswordHash =
+
+            StudentUser2Claim = new IdentityUserClaim<string>()
+            {
+                Id = 3,
+                ClaimType = UserFullNameClaim,
+                ClaimValue = "Николай Николов",
+                UserId = "714e73f4716d4cf9946d494ed0d72cf7"
+            };
+
+            StudentUser2.PasswordHash =
                   hasher.HashPassword(StudentUser2, "st2654321");
 
             Client1 = new ApplicationUser()
@@ -77,6 +107,15 @@
                 FirstName = "Иван",
                 LastName = "Иванов"
             };
+
+            Client1Claim = new IdentityUserClaim<string>()
+            {
+                Id = 4,
+                ClaimType = UserFullNameClaim,
+                ClaimValue = "Иван Иванов",
+                UserId = "cf756f58ca9146f2889a54a32cde2dfc"
+            };
+
             Client1.PasswordHash =
                  hasher.HashPassword(Client1, "cl123456");
         }

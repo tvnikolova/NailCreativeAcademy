@@ -36,6 +36,7 @@
             builder.ApplyConfiguration(new SaloonConfig());
             builder.ApplyConfiguration(new TrainerConfig());
             builder.ApplyConfiguration(new UserConfig());
+            builder.ApplyConfiguration(new UserClaimsConfig());
 
             base.OnModelCreating(builder);
         }
