@@ -13,7 +13,7 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> EnrolledCourses()
         {
             var enrolledCourses = new EnrolledCourseModel()
             {

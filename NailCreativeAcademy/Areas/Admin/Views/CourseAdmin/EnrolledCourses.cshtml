@@ -1,0 +1,30 @@
+﻿ @model EnrolledCourseModel
+
+@{
+    ViewBag.Title = "Записани курсове";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (!Model.EnrolledCourses.Any())
+{
+    <h2 class="text-center text-danger">Няма записани курсове!</h2>
+}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var course in Model.EnrolledCourses)
+    {
+          <div class="col">
+            <div class="card" style="width: 22rem;">
+                <img src="~/image/Course/@(course.Image+".jpg")" class="card-img-top text-center" alt="" style="height : 17rem;width : 20rem;" />
+                <div class="card-body">
+                    <h5 class="card-title">@course.Name</h5>
+                    <h5 class="card-title mt-1">Начало: @course.StartDate</h5>
+                    <hr />
+                    <h3 class="card-title align-content-sm-center mt-1">@course.Price лв.</h3>
+                </div>
+            </div>
+        </div>
+    }
+</div>
