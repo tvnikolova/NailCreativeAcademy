@@ -107,12 +107,16 @@ namespace NailCreativeAcademy.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
-
-                user.FirstName = Input.FirstName; 
-                user.LastName = Input.LastName;
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 
@@ -164,13 +168,5 @@ namespace NailCreativeAcademy.Areas.Identity.Pages.Account
             }
         }
 
-        //private IUserEmailStore<ApplicationUser> GetEmailStore()
-        //{
-        //    if (!_userManager.SupportsUserEmail)
-        //    {
-        //        throw new NotSupportedException("The default UI requires a user store with email support.");
-        //    }
-        //    return (IUserEmailStore<ApplicationUser>)_userStore;
-        //////}
     }
 }
