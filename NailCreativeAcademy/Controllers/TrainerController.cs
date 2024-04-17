@@ -8,6 +8,7 @@
     using Core.Models.Trainer;
     using static Core.Constants.MessageConstants;
     using System.Security.Claims;
+    using NailCreativeAcademy.Infrastructure.Data.Models;
 
     public class TrainerController : BaseController
     {
@@ -127,10 +128,31 @@
             {
                 return BadRequest();
             }
+            var allCourses = await courseService.All();
 
-            await trainerService.DeleteAsync(id);
+            bool existCoursewithStudent =false; 
+            string courseName = string.Empty;
+            foreach (var course in allCourses)
+            {
+                existCoursewithStudent=await courseService.CourseHasEnrolledStudent(course.Id);
+                if (existCoursewithStudent)
+                {
+                    courseName = course.Name;
+                    break;
+                }
+                
+            }
+            if(existCoursewithStudent)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                await trainerService.DeleteAsync(id);
+            }
 
             return RedirectToAction(nameof(All));
         }
+       
     }
 }
