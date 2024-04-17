@@ -98,17 +98,6 @@
             return allTypes;
         }
 
-        public async Task<bool> CourseExistAsyncByName(string courseName)
-        {
-            return await repository.AllReadOnly<Course>()
-                .AnyAsync(c => c.Name == courseName);
-        }
-        public async Task<bool> CourseExistAsyncById(int id)
-        {
-            return await repository.AllReadOnly<Course>()
-                .AnyAsync(c => c.Id == id);
-        }
-
         public async Task<CourseDetailsViewModel> DetailsAsync(int id)
         {
             CourseDetailsViewModel courses = await repository.AllReadOnly<Course>()
@@ -126,41 +115,17 @@
             return courses;
         }
 
-        public async Task<IEnumerable<MyCourseModel>> MyCoursesAsync(string userId)
+        public async Task RemoveMyCourse(int courseId, string userId)
         {
-            
-            var courses = await repository.AllReadOnly<EnrolledStudent>()
-                                            .AsNoTracking()
-                                            .Where(s=>s.StudentId == userId)
-                                           .Select(es => new MyCourseModel()
-                                           {
-                                              Id = es.CourseId,
-                                              Name = es.Course.Name,
-                                              Program = es.Course.Program,
-                                              Duration = es.Course.Duration,
-                                              Image = es.Course.Image,
-                                              Price = es.Course.Price,
-                                              StartDate = es.Course.StartDate.ToString(DateOProjectString)                                           
-                                           })
-                                           .ToListAsync();
+            var foundCourse = await repository.AllReadOnly<EnrolledStudent>()
+                                               .Where(c => c.CourseId == courseId && c.StudentId == userId)
+                                               .FirstOrDefaultAsync();
 
-            return courses;
-
-        }
-
-        public async Task<bool> MyCourseExists(string userId, int courseId)
-        {
-            return await repository.AllReadOnly<EnrolledStudent>()
-                .AnyAsync(c => c.StudentId== userId && c.CourseId== courseId);
-        }
-
-        public async Task<EnrolledStudent> GetMyEnrolledCourseById(string userId, int courseId)
-        {
-            var foundedCourse = await repository.AllReadOnly<EnrolledStudent>()
-                                                 .Where(c => c.CourseId == courseId && c.StudentId == userId)
-                                                 .FirstAsync();
-
-            return foundedCourse;
+            if (foundCourse != null)
+            {
+                await repository.RemoveAsync<EnrolledStudent>(courseId, userId);
+                await repository.SaveChangesAsync();
+            }
 
         }
         public async Task<string> JoinedCourse(string userId, int courseId)
@@ -175,6 +140,13 @@
             await repository.SaveChangesAsync();
 
             return newCourseToAdd.StudentId;
+
+        }
+
+        public async Task DeleteAsync(int courseId)
+        {
+            await repository.DeleteAsync<Course>(courseId);
+            await repository.SaveChangesAsync();
 
         }
 
@@ -197,18 +169,50 @@
             return foundedCourse;
            
         }
-
-        public async Task RemoveMyCourse(int courseId, string userId)
+        public async Task<IEnumerable<MyCourseModel>> MyCoursesAsync(string userId)
         {
-            var foundCourse = await repository.AllReadOnly<EnrolledStudent>()
-                                               .Where(c=>c.CourseId==courseId && c.StudentId==userId)
-                                               .FirstOrDefaultAsync();
 
-            if (foundCourse != null)
-            {
-                await repository.RemoveAsync<EnrolledStudent>(courseId,userId);
-                await repository.SaveChangesAsync();
-            }
+            var courses = await repository.AllReadOnly<EnrolledStudent>()
+                                            .AsNoTracking()
+                                            .Where(s => s.StudentId == userId)
+                                           .Select(es => new MyCourseModel()
+                                           {
+                                               Id = es.CourseId,
+                                               Name = es.Course.Name,
+                                               Program = es.Course.Program,
+                                               Duration = es.Course.Duration,
+                                               Image = es.Course.Image,
+                                               Price = es.Course.Price,
+                                               StartDate = es.Course.StartDate.ToString(DateOProjectString)
+                                           })
+                                           .ToListAsync();
+
+            return courses;
+
+        }
+
+        public async Task<bool> MyCourseExists(string userId, int courseId)
+        {
+            return await repository.AllReadOnly<EnrolledStudent>()
+                .AnyAsync(c => c.StudentId == userId && c.CourseId == courseId);
+        }
+        public async Task<bool> CourseExistByNameAsync(string courseName)
+        {
+            return await repository.AllReadOnly<Course>()
+                .AnyAsync(c => c.Name == courseName);
+        }
+        public async Task<bool> CourseExistByIdAsync(int id)
+        {
+            return await repository.AllReadOnly<Course>()
+                .AnyAsync(c => c.Id == id);
+        }
+        public async Task<EnrolledStudent> GetMyEnrolledCourseById(string userId, int courseId)
+        {
+            var foundedCourse = await repository.AllReadOnly<EnrolledStudent>()
+                                                 .Where(c => c.CourseId == courseId && c.StudentId == userId)
+                                                 .FirstAsync();
+
+            return foundedCourse;
 
         }
 
@@ -251,15 +255,6 @@
 
             return courseToDelete;
         }
-
-
-        public async Task DeleteAsync(int courseId)
-        {
-            await repository.DeleteAsync<Course>(courseId);
-            await repository.SaveChangesAsync();
-           
-        }
-
         public async Task<bool> CourseHasEnrolledStudent(int courseId)
         {
            return await repository.AllReadOnly<EnrolledStudent>()
@@ -295,5 +290,11 @@
                                                 .AnyAsync();
         }
 
+        public async  Task<bool> CourseHasTrainerAsync(int trainerId)
+        {
+            return await repository.AllReadOnly<Course>()
+                                                .Where(c => c.TrainerId == trainerId)
+                                                .AnyAsync();
+        }
     }
 }

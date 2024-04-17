@@ -39,7 +39,7 @@
         public async Task<IActionResult> Details(int id)
         {
 
-            if (await courseService.CourseExistAsyncById(id)==false)
+            if (await courseService.CourseExistByIdAsync(id)==false)
             {
                 return BadRequest();
             }
@@ -96,7 +96,7 @@
                 return View(courseModel);
             }
 
-            if (await courseService.CourseExistAsyncByName(courseModel.Name) == true)
+            if (await courseService.CourseExistByNameAsync(courseModel.Name) == true)
             {
                 ModelState.AddModelError(nameof(courseModel.Name), CourseExists);
             }
@@ -117,7 +117,7 @@
         [HttpGet]
         public async Task<IActionResult> CourseProgram(int id)
         {
-            if(await courseService.CourseExistAsyncById(id)==false)
+            if(await courseService.CourseExistByIdAsync(id)==false)
             {
                 return BadRequest();
             }
@@ -199,7 +199,7 @@
                 return View(course);
             }
 
-            if (await courseService.CourseExistAsyncById(id) == false)
+            if (await courseService.CourseExistByIdAsync(id) == false)
             {
                 ModelState.AddModelError(nameof(course.Name), CourseNotExist);
             }
@@ -224,7 +224,7 @@
             {
                 return Unauthorized();
             }
-            var foundCourse = await courseService.CourseExistAsyncById(id);
+            var foundCourse = await courseService.CourseExistByIdAsync(id);
 
             if (!foundCourse)
             {
