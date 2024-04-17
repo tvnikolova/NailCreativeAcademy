@@ -64,6 +64,8 @@
 
             int newTrainerId = await trainerService.CreateAsync(trainer);
 
+            TempData[UserAddMessageSuccess] = "Обучителя е добавен!";
+
             return RedirectToAction(nameof(All));
         }
 
@@ -102,6 +104,8 @@
 
             await trainerService.EditAsync(trainer, id);
 
+            TempData[UserAddMessageSuccess] = "Обучителя е редактиран успешно!";
+
             return RedirectToAction(nameof(All));
         }
 
@@ -131,18 +135,20 @@
             var allCourses = await courseService.All();
 
             bool existCourseWithStudent =false; 
-            string courseName = string.Empty;
+
             foreach (var course in allCourses)
             {
                 existCourseWithStudent = await courseService.CourseHasEnrolledStudent(course.Id);
-                if (existCourseWithStudent)
+
+                if (existCourseWithStudent && course.TrainerId==id)
                 {
-                    courseName = course.Name;
+                    existCourseWithStudent = true;
                     break;
                 }
+
                 
             }
-            if(existCourseWithStudent)
+            if(existCourseWithStudent==true)
             {
                 return BadRequest();
             }
@@ -151,6 +157,7 @@
                 await trainerService.DeleteAsync(id);
             }
 
+            TempData[UserAddMessageSuccess] = "Обучителя е добавен!";
             return RedirectToAction(nameof(All));
         }
        

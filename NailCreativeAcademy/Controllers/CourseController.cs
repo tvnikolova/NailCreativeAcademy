@@ -111,6 +111,8 @@
 
             int newCourseToAdd = await courseService.CreateAsync(courseModel, trainerId);
 
+            TempData[UserAddMessageSuccess] = "Курсът е успешно добавен!";
+
             return RedirectToAction(nameof(All));
         }
 
@@ -135,10 +137,14 @@
 
             if(enrolledCourse)
             {
+                TempData[UserAddMessageError] = "Вече сте записани за този курс!";
+
                 return BadRequest();
             }
 
             string newCoursetoAdd = await courseService.JoinedCourse(userId, id);
+
+            TempData[UserAddMessageSuccess] = "Успешно се записахте за курса!";
 
             return RedirectToAction(nameof(MyCourses));
         }
@@ -155,6 +161,8 @@
             }
 
             await courseService.RemoveMyCourse(id, userId);
+
+            TempData[UserAddMessageSuccess] = "Успешно се оптисахте от курса!";
 
             return RedirectToAction(nameof(MyCourses));
 
@@ -214,6 +222,8 @@
             trainerId = await trainerService.GetTrainerId(course.Trainer);
             await  courseService.EditAsync(course, id, trainerId);
 
+            TempData[UserAddMessageSuccess] = "Курсът е успешно редактиран!";
+
             return RedirectToAction(nameof(All));
         }
 
@@ -250,8 +260,10 @@
                 return BadRequest();
             }
             
-                await courseService.DeleteAsync(id);
-           
+            await courseService.DeleteAsync(id);
+
+            TempData[UserAddMessageSuccess] = "Курсът премахнат!";
+
             return RedirectToAction(nameof(All));
         }
     }

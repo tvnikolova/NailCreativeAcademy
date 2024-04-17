@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Core.Contracts;
     using Core.Models.Gallery;
+    using static Core.Constants.MessageConstants;
     public class GalleryController : BaseController
     {
         private readonly IGalleryService galleryService;
@@ -59,6 +60,8 @@
 
             await galleryService.AddImageAsync(formModel);
 
+            TempData[UserAddMessageSuccess] = "Изображението е добавено!";
+
             return RedirectToAction(nameof(All));
         }
 
@@ -71,7 +74,7 @@
             {
                 return BadRequest();
             }
-
+           
             return View(imageToDelete);
         }
 
@@ -84,6 +87,8 @@
             }
 
             await galleryService.DeleteAsync(id);
+
+            TempData[UserAddMessageSuccess] = "Изображението е изтрито!";
 
             return RedirectToAction(nameof(All));
         }
