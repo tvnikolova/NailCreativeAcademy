@@ -130,19 +130,19 @@
             }
             var allCourses = await courseService.All();
 
-            bool existCoursewithStudent =false; 
+            bool existCourseWithStudent =false; 
             string courseName = string.Empty;
             foreach (var course in allCourses)
             {
-                existCoursewithStudent=await courseService.CourseHasEnrolledStudent(course.Id);
-                if (existCoursewithStudent)
+                existCourseWithStudent = await courseService.CourseHasEnrolledStudent(course.Id);
+                if (existCourseWithStudent)
                 {
                     courseName = course.Name;
                     break;
                 }
                 
             }
-            if(existCoursewithStudent)
+            if(existCourseWithStudent)
             {
                 return BadRequest();
             }
