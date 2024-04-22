@@ -5,6 +5,8 @@
     using Core.Contracts;
     using Core.Models.User;
     using static Core.Constants.AdminConstants;
+    using Microsoft.CodeAnalysis.Operations;
+
     public class UserController : AdminBaseController
     {
         private readonly IUserService userService;
@@ -16,6 +18,7 @@
             memoryCache = _memoryCache;
         }
 
+        [HttpGet]
         public async Task<IActionResult> All()
         {
             var users = memoryCache.Get<IEnumerable<UserServiceModel>>(UserCacheKey);
@@ -29,6 +32,20 @@
 
                 memoryCache.Set(UserCacheKey, users, cache);
             }
+
+            return View(users);
+        }
+
+        
+        [HttpPost]
+        public async Task<IActionResult> All(string searchText)
+        {
+            var users = await userService.AllAsync();
+
+                if (!String.IsNullOrEmpty(searchText))
+                {
+                    users = users.Where(u => u.FullName.Contains(searchText)).ToList();
+                }
 
             return View(users);
         }
