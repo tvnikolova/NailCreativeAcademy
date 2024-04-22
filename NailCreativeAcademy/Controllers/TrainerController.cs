@@ -157,7 +157,7 @@
                 await trainerService.DeleteAsync(id);
             }
 
-            TempData[UserAddMessageSuccess] = "Обучителя е добавен!";
+            TempData[UserAddMessageSuccess] = "Обучителя е премахнат!";
             return RedirectToAction(nameof(All));
         }
        
