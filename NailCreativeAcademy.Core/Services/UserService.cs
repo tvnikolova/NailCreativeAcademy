@@ -23,7 +23,8 @@
                 {
                     Id= u.Id,
                     Email = u.Email,
-                    FullName = $"{u.FirstName} {u.LastName}"
+                    FullName = $"{u.FirstName} {u.LastName}",
+                    PhoneNumber = u.PhoneNumber,
                 })
                 .ToListAsync();
             

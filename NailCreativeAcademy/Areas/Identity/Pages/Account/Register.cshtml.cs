@@ -94,6 +94,11 @@ namespace NailCreativeAcademy.Areas.Identity.Pages.Account
             [Display(Name = "Last name")]
             [StringLength(UserLastNameMaxLength, MinimumLength = UserLastNameMinLength, ErrorMessage = LengthStringRequired)]
             public string LastName { get; set; }
+            [Required]
+            [Display(Name = "Phone number")]
+            [StringLength(PhoneNumberLength, MinimumLength = PhoneNumberMinLength, ErrorMessage = LengthStringRequired)]
+            public string PhoneNumber { get; set; }
+
         }
 
 
@@ -116,6 +121,7 @@ namespace NailCreativeAcademy.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
+                    PhoneNumber = Input.PhoneNumber
                 };
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

@@ -5,10 +5,10 @@
 
 		public const string DateOProjectString = "dd/MM/yyyy HH:mm";
         public const int PhoneNumberLength = 15;
-
+        public const int PhoneNumberMinLength = 13;
         //Trainer constants
 
-		public const int TrainerDescriptionMinLength = 20;
+        public const int TrainerDescriptionMinLength = 20;
 		public const int TrainerDescriptionMaxLength = 500;
 
         public const int TrainerNameMinLength = 5;
