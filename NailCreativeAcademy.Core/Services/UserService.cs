@@ -17,7 +17,7 @@
         }
         public async Task<IEnumerable<UserServiceModel>> AllAsync()
         {
-            
+           
             var users = await repository.AllReadOnly<ApplicationUser>()
                 .Select(u => new UserServiceModel()
                 {
@@ -26,11 +26,23 @@
                     FullName = $"{u.FirstName} {u.LastName}"
                 })
                 .ToListAsync();
-
+            
             foreach (var user in users)
             {
                 user.IsEnrolled= await courseService.StudentHasEnrolledCourse(user.Id);
+                List<string> userCourses = new List<string>();
+                if (user.IsEnrolled)
+                {
+                    var myCourses = await courseService.MyCoursesAsync(user.Id);
+                   
+                    foreach (var course in myCourses)
+                    {
+                        userCourses.Add(course.Name);
+                    }
+                }
+                user.Courses = userCourses.ToList();
             }
+           
             return users;
         }
         public async Task<string> UserFullNameAsync(string userId)
