@@ -311,7 +311,8 @@
                                                            Image = c.Image,
                                                            Duration = c.Duration,
                                                            Price = c.Price,
-                                                           TrainerId = c.TrainerId,                                                       })                                                       
+                                                           TrainerId = c.TrainerId
+                                                       })                                                       
                                                        .ToListAsync();
             return allCourseWithStudents;
         }
