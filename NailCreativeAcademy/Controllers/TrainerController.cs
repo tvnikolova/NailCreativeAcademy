@@ -134,21 +134,21 @@
             }
             var allCourses = await courseService.All();
 
-            bool existCourseWithStudent =false; 
+            bool trainerHasCOurse =false; 
 
             foreach (var course in allCourses)
             {
-                existCourseWithStudent = await courseService.CourseHasEnrolledStudent(course.Id);
+                bool courseHasStudent = await courseService.CourseHasEnrolledStudent(course.Id);
 
-                if (existCourseWithStudent && course.TrainerId==id)
+                if (courseHasStudent && course.TrainerId==id)
                 {
-                    existCourseWithStudent = true;
+                    trainerHasCOurse = true;
                     break;
                 }
 
                 
             }
-            if(existCourseWithStudent==true)
+            if(trainerHasCOurse == true)
             {
                 return BadRequest();
             }
