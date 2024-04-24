@@ -15,14 +15,14 @@
         public static Saloon Saloon1;
         public static Trainer Trainer3;
         public static Trainer Trainer4;
-        public static ApplicationUser AdminUser;
+        public static ApplicationUser User1;
         public static ApplicationUser Student1;
         public static EnrolledStudent EnrolledStudent1;
         public static CourseType FirstType;
         public static CourseType SecondType;
         public static void SeedDatabase(NailCreativeDbContext dbContext)
         {
-            AdminUser = new ApplicationUser()
+            User1 = new ApplicationUser()
             {
                 Id = "5854a84fce2047e383c6ab36f99c7a9f",
                 UserName = "mp123@abv.bg",
@@ -81,6 +81,7 @@
                 CourseId = Course1.Id,
                 ClientId = "b8b63dd7e8f14a01b3d4ef4bb901b2e4"
             };
+
             Gallery1 = new Gallery()
             {
                 Name = "2811899d-da0d-4e66-a7be-8b256202a25a.png"
@@ -122,7 +123,7 @@
                 Name = "Напреднали"
             };
 
-            dbContext.Users.Add(AdminUser);
+            dbContext.Users.Add(User1);
             dbContext.Users.Add(Student1);
             dbContext.Courses.Add(Course1);
             dbContext.Courses.Add(Course2);

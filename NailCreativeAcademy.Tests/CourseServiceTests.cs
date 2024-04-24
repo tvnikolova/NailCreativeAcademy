@@ -13,6 +13,8 @@ namespace NailCreativeAcademy.Tests
     using Infrastructure.Data.Common;
     using Infrastructure.Data.Models;
     using static SeederDataBase;
+    using static Infrastructure.Constants.NailCreativeConstants;
+    using NailCreativeAcademy.Core.Models.Saloon;
 
     public class CourseServiceTests
     {
@@ -35,7 +37,8 @@ namespace NailCreativeAcademy.Tests
             dbContext.Database.EnsureCreated();
 
             SeedDatabase(dbContext);
-           
+            repository = new Repository(dbContext);
+            courseService = new CourseService(repository);
         }
         [SetUp]
         public void Setup()
@@ -361,6 +364,38 @@ namespace NailCreativeAcademy.Tests
             var courseDetails = await courseService.DetailsAsync(courseId);
 
             Assert.IsTrue(courseDetails!=null);
+        }
+
+        [Test]
+        public async Task GetCourseByCourseViewModel()
+        {
+            repository = new Repository(dbContext);
+            courseService = new CourseService(repository);
+
+            var foundCourses = await courseService.All();
+
+            var foundCourse = foundCourses.FirstOrDefault(c => c.Id == Course1.Id);
+            Course courseInDataBase = await repository.AllReadOnly<Course>().Where(s => s.Id == Course1.Id).FirstAsync();
+
+            CourseViewModel viewCourse = new CourseViewModel()
+            {
+               Id = courseInDataBase.Id,
+               Details = courseInDataBase.Details,
+               Duration = courseInDataBase.Duration,
+               Image = courseInDataBase.Image,
+               Name = courseInDataBase.Name,
+               Price = courseInDataBase.Price,
+               StartDate = courseInDataBase.StartDate.ToString(DateOProjectString),
+               TrainerId = courseInDataBase.TrainerId
+            };
+            Assert.IsTrue(viewCourse.Id == foundCourse.Id);
+            Assert.IsTrue(viewCourse.Name == foundCourse.Name);
+            Assert.IsTrue(viewCourse.Price == foundCourse.Price);
+            Assert.IsTrue(viewCourse.Details == foundCourse.Details);
+            Assert.IsTrue(viewCourse.Duration == foundCourse.Duration);
+            Assert.IsTrue(viewCourse.Image == foundCourse.Image);
+            Assert.IsTrue(viewCourse.TrainerId == foundCourse.TrainerId);
+            Assert.IsTrue(viewCourse.StartDate == foundCourse.StartDate);
         }
     }
 }

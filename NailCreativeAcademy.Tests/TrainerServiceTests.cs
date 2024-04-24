@@ -1,22 +1,17 @@
 ﻿namespace NailCreativeAcademy.Tests
 {
+    using Core.Contracts;
+    using Core.Services;
+    using Infrastructure.Data;
+    using Infrastructure.Data.Common;
     using Microsoft.EntityFrameworkCore;
+    using NailCreativeAcademy.Core.Models.Trainer;
+    using NailCreativeAcademy.Infrastructure.Data.Models;
     using NUnit.Framework;
     using System;
-
-    using Core.Contracts;
-    using Infrastructure.Data;
-    using Infrastructure.Data.Common;    
-    using Core.Services;
-    
-
-    using static SeederDataBase;
-    using Microsoft.AspNetCore.Cors.Infrastructure;
-    using System.Threading.Tasks;
     using System.Linq;
-    using NailCreativeAcademy.Core.Models.Trainer;
-    using NailCreativeAcademy.Core.Models.Course;
-    using NailCreativeAcademy.Infrastructure.Data.Models;
+    using System.Threading.Tasks;
+    using static SeederDataBase;
 
     public class TrainerServiceTests
     {
@@ -95,7 +90,6 @@
         [Test]
         public async Task GetAllTrainersWork()
         {
-           
             var allTrainers = await trainerService.AllAsync();
 
             Assert.That(5, Is.EqualTo(allTrainers.Count()));
