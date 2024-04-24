@@ -18,7 +18,5 @@
         [Required(ErrorMessage = RequiredMessage)]
         public string ClientId { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = RequiredMessage)]
-        public int FeedbackBoardId { get; set; } 
     }
 }
