@@ -118,15 +118,13 @@
                 trainerToDelete.Id = foundedTrainer.Id;
                 trainerToDelete.Name = foundedTrainer.Name;
                 trainerToDelete.About = foundedTrainer.About;
-
-
             }
 
             return trainerToDelete;
         }
-        public async Task DeleteAsync(int trinerId)
+        public async Task DeleteAsync(int trainerId)
         {
-            await repository.DeleteAsync<Trainer>(trinerId);
+            await repository.DeleteAsync<Trainer>(trainerId);
             await repository.SaveChangesAsync();
         }
     }

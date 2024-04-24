@@ -12,6 +12,6 @@
         Task<IEnumerable<TrainerViewModel>> AllAsync();
         Task EditAsync(TrainerFormModel model, int trainerId);
         Task<TrainerViewModel> GetTrainerToDeleteAsync(int trainerId);
-        Task DeleteAsync(int trinerId);
+        Task DeleteAsync(int trainerId);
     }
 }

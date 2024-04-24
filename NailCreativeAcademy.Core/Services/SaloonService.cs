@@ -28,8 +28,6 @@
                                                             .ToListAsync();
             return saloons;
         }
-
-
 		public async Task<int> AddAsync(SaloonFormModel newSaloon)
 		{
 			Saloon newSaloonToAdd = new Saloon();

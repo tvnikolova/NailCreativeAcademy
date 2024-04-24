@@ -9,7 +9,7 @@
         Task<int> AddAsync(FeedbackFormModel feedback,int courseId);
         Task EditAsync(FeedbackFormModel model, int feedbackId);
         Task <FeedbackFormModel> GetFeedbackById(int feedbackId);
-        Task DeleteAsync(int courseId);
+        Task DeleteAsync(int feedbackId);
         Task<FeedbackViewModel> GetFeedbackToDeleteAsync(int feedbackId);
     }
 }
