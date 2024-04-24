@@ -1,10 +1,9 @@
-﻿using NailCreativeAcademy.Core.Models.User;
-
-namespace NailCreativeAcademy.Tests
+﻿namespace NailCreativeAcademy.Tests
 {
     using Microsoft.EntityFrameworkCore;
     using NUnit.Framework;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -12,15 +11,10 @@ namespace NailCreativeAcademy.Tests
     using Core.Services;
     using Infrastructure.Data;
     using Infrastructure.Data.Common;
-
-    using static SeederDataBase;
-
-    
-    using Core.Models.Saloon;
-    using Core.Services;
     using Infrastructure.Data.Models;
-    using System.Collections.Generic;
-    using Microsoft.AspNetCore.Cors.Infrastructure;
+    using Core.Models.User;
+   
+    using static SeederDataBase;
 
     public class UserServiceTests
     {

@@ -1,20 +1,18 @@
 namespace NailCreativeAcademy.Tests
 {
-    using System.Linq;
-    using NUnit.Framework;
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore;
-
     using Core.Contracts;
     using Core.Models.Course;
     using Core.Services;
     using Infrastructure.Data;
     using Infrastructure.Data.Common;
     using Infrastructure.Data.Models;
-    using static SeederDataBase;
+    using Microsoft.EntityFrameworkCore;
+    using NUnit.Framework;
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
     using static Infrastructure.Constants.NailCreativeConstants;
-    using NailCreativeAcademy.Core.Models.Saloon;
+    using static SeederDataBase;
 
     public class CourseServiceTests
     {
