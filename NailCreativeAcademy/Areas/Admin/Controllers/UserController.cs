@@ -1,11 +1,10 @@
 ﻿namespace NailCreativeAcademy.Areas.Admin.Controllers
 {
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Caching.Memory;
     using Core.Contracts;
     using Core.Models.User;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Caching.Memory;
     using static Core.Constants.AdminConstants;
-    using Microsoft.CodeAnalysis.Operations;
 
     public class UserController : AdminBaseController
     {
@@ -22,18 +21,20 @@
         public async Task<IActionResult> All()
         {
             var users = memoryCache.Get<IEnumerable<UserServiceModel>>(UserCacheKey);
+            List<UserServiceModel> sortеdUsers = new List<UserServiceModel>();
 
             if (users == null || users.Any() == false)
             {
                 users = await userService.AllAsync();
+               
 
-                var cache = new MemoryCacheEntryOptions()
+                 var cache = new MemoryCacheEntryOptions()
                   .SetAbsoluteExpiration(TimeSpan.FromMinutes(2));
 
                 memoryCache.Set(UserCacheKey, users, cache);
             }
-
-            return View(users);
+            sortеdUsers = users.OrderBy(u => u.FullName).ToList();
+            return View(sortеdUsers);
         }
 
         
@@ -44,10 +45,11 @@
 
                 if (!String.IsNullOrEmpty(searchText))
                 {
-                    users = users.Where(u => u.FullName.Contains(searchText)).ToList();
+                    users = users.Where(u => u.FullName.Contains(searchText)).OrderBy(u=>u.FullName).ToList();
                 }
 
             return View(users);
         }
+       
     }
 }
