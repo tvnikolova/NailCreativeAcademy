@@ -94,34 +94,14 @@ namespace NailCreativeAcademy.Tests
 
             Assert.IsFalse(result);
         }
-        [Test]
-        public async Task RemoveMyCourseSuccessfully()
-        {
-            repository = new Repository(dbContext);
-            courseService = new CourseService(repository);
-
-            int courseId = Course1.Id;
-            string studentId = Student1.Id;
-
-            var myEnrolledCourse = await courseService.GetMyEnrolledCourseById(studentId, courseId);
-
-            if (myEnrolledCourse != null)
-            {
-                await courseService.RemoveMyCourse(courseId, studentId);
-            }
-            
-            bool allEnrolledCourses = await courseService.MyCourseExists(studentId, courseId);
-
-           Assert.False(allEnrolledCourses);
-        }
-
+        
         [Test]
         public async Task JoinCourseToMyCourse()
         {
             repository = new Repository(dbContext);
             courseService = new CourseService(repository);
 
-            int courseId = Course1.Id;
+            int courseId = Course2.Id;
             string studentId = Student1.Id;
 
             bool allEnrolledCourses = await courseService.MyCourseExists(studentId, courseId);
@@ -135,7 +115,26 @@ namespace NailCreativeAcademy.Tests
 
             Assert.IsTrue(courseEnrolled);
         }
+        [Test]
+        public async Task RemoveMyCourseSuccessfully()
+        {
+            repository = new Repository(dbContext);
+            courseService = new CourseService(repository);
 
+            int courseId = Course2.Id;
+            string studentId = Student1.Id;
+
+            var myEnrolledCourse = await courseService.GetMyEnrolledCourseById(studentId, courseId);
+
+            if (myEnrolledCourse != null)
+            {
+                await courseService.RemoveMyCourse(courseId, studentId);
+            }
+
+            bool allEnrolledCourses = await courseService.MyCourseExists(studentId, courseId);
+
+            Assert.False(allEnrolledCourses);
+        }
         [Test]
         public async Task CourseHasEnrolledCourseReturnFalse()
         {
@@ -335,7 +334,7 @@ namespace NailCreativeAcademy.Tests
             repository = new Repository(dbContext);
             courseService = new CourseService(repository);
 
-            string studentId = Student1.Id;
+            string studentId = User1.Id;
 
             bool hasEnrolledStudents = await courseService.StudentHasEnrolledCourse(studentId);
 
@@ -396,6 +395,26 @@ namespace NailCreativeAcademy.Tests
             Assert.IsTrue(viewCourse.Image == foundCourse.Image);
             Assert.IsTrue(viewCourse.TrainerId == foundCourse.TrainerId);
             Assert.IsTrue(viewCourse.StartDate == foundCourse.StartDate);
+        }
+
+        [Test]
+
+        public async Task GetMyCourseByIdSuccessfully()
+        {
+
+            string userId = Student1.Id;
+            var foundCourse = await repository.AllReadOnly<Course>()
+                                                .Where(c => c.Id == Course1.Id)
+                                                .FirstAsync();
+            var myCourse = await courseService.GetMyCourseByIdAsync(Course1.Id);
+
+            Assert.That(foundCourse.Id,Is.EqualTo(myCourse.Id));
+            Assert.That(foundCourse.Name, Is.EqualTo(myCourse.Name));
+            Assert.That(foundCourse.Program, Is.EqualTo(myCourse.Program));
+            Assert.That(foundCourse.Price, Is.EqualTo(myCourse.Price));
+            Assert.That(foundCourse.Image, Is.EqualTo(myCourse.Image));
+            Assert.That(foundCourse.StartDate.ToString(DateOProjectString), Is.EqualTo(myCourse.StartDate));
+            Assert.That(foundCourse.Duration, Is.EqualTo(myCourse.Duration));
         }
     }
 }
